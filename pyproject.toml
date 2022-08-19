@@ -43,3 +43,16 @@ safety = "^2.1.1"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+config = "./pyproject.toml"
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+strict = true
+pretty = true
+show_column_numbers = true
+show_error_codes = true
+show_error_context = true
