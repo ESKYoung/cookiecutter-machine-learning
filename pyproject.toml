@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "cookiecutter-machine-learning"
+version = "0.1.0"
+description = "A cookiecutter template for machine learning projects in Python."
+license = "MIT"
+authors = ["Eric Young <ESKYoung@users.noreply.github.com>"]
+maintainers = ["Eric Young <ESKYoung@users.noreply.github.com>"]
+readme = "README.md"
+homepage = ""
+repository = "https://github.com/ESKYoung/cookiecutter-machine-learning"
+documentation = ""
+keywords = []
+classifiers = []
+packages = [
+    {include = "cookiecutter_machine_learning", from = "src"},
+    {include = "hooks"},
+]
+include = []
+exclude = []
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
