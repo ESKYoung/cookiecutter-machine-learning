@@ -21,6 +21,13 @@ exclude = []
 [tool.poetry.dependencies]
 python = "^3.9"
 
+[tool.poetry.group.ci-cd]
+optional = true
+
+[tool.poetry.group.ci-cd.dependencies]
+nox = "^2022.8.7"
+nox-poetry = "^1.0.1"
+
 [tool.poetry.group.pre-commit]
 optional = true
 
@@ -40,12 +47,31 @@ pre-commit = "^2.20.0"
 pre-commit-hooks = "^4.3.0"
 safety = "^2.1.1"
 
+[tool.poetry.group.testing]
+optional = true
+
+[tool.poetry.group.testing.dependencies]
+coverage = {extras = ["toml"], version = "^6.4.4"}
+pytest = "^7.1.2"
+pytest-cookies = "^0.6.1"
+pytest-cov = "^3.0.0"
+pytest-mock = "^3.8.2"
+pytest-xdist = "^2.5.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 config = "./pyproject.toml"
+
+[tool.coverage.paths]
+source = ["hooks", "src"]
+
+[tool.coverage.report]
+exclude_lines = ["if __name__ == .__main__.:"]
+fail_under = 90
+show_missing = true
 
 [tool.isort]
 profile = "black"
@@ -56,3 +82,8 @@ pretty = true
 show_column_numbers = true
 show_error_codes = true
 show_error_context = true
+
+[tool.pytest.ini_options]
+addopts = ["-vv", "--doctest-modules", "--keep-baked-projects"]
+doctest_optionflags = "NORMALIZE_WHITESPACE"
+testpaths = ["./tests"]
