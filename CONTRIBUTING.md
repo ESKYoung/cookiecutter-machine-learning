@@ -69,6 +69,51 @@ The following hooks are enabled for this project:
 | `check-yaml`                                     | Check YAML files for valid syntax.                                                                                                                                                                                                                 |
 | [`prettier`][prettier]                           | Standardise formatting for JavaScript, TypeScript, Flow, JSX, JSON, CSS, SCSS, Less, HTML, Vue, Angular, GraphQL, Markdown, and YAML files.                                                                                                        |
 
+## Testing
+
+[Tests are written using `pytest`][pytest], and can be found in the `tests` folder.
+These tests check code written in the `hooks`, and `src` folder. To run the tests, open
+your terminal, and run the following commands:
+
+```zsh
+cd /path/to/repository
+pytest
+```
+
+For code written within the `src` folder, we expect code coverage of at least 90%. You
+can view the coverage report by opening your terminal, and running the following
+commands:
+
+```zsh
+cd /path/to/repository
+pytest --cov --cov-report=html
+open htmlcov/index.html
+```
+
+[We use `nox` to handle testing on multiple Python versions][nox] to ensure
+compatibility. All `nox` sessions can be run by opening the terminal, and running the
+following commands:
+
+```zsh
+cd /path/to/repository
+nox
+```
+
+This runs the following `nox` sessions:
+
+| Session name | Description                                              |
+| ------------ | -------------------------------------------------------- |
+| `pre-commit` | [Runs pre-commit hooks on all files](#pre-commit-hooks). |
+| `testing`    | Runs the entire pytest suite.                            |
+
+To run individual `nox` session(s), add the `session` flag followed by the name of the
+session(s) with space separators, for example:
+
+```zsh
+cd /path/to/repository
+nox --session pre-commit testing
+```
+
 [bandit]: https://bandit.readthedocs.io
 [black]: https://black.readthedocs.io
 [detect-secrets]: https://github.com/Yelp/detect-secrets
@@ -79,9 +124,11 @@ The following hooks are enabled for this project:
 [flake8-rst-docstrings]: https://github.com/peterjc/flake8-rst-docstrings
 [isort]: https://pycqa.github.io/isort
 [mypy]: https://mypy.readthedocs.io
+[nox]: https://nox.thea.codes/en/stable
 [nbstripout]: https://github.com/kynan/nbstripout
 [nbqa]: https://nbqa.readthedocs.io
 [poetry]: https://python-poetry.org
 [pre-commit]: https://pre-commit.com
 [prettier]: https://prettier.io
+[pytest]: https://docs.pytest.org/en/7.1.x
 [safety]: https://pyup.io/safety
