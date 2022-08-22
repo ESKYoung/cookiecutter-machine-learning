@@ -20,6 +20,8 @@ exclude = []
 
 [tool.poetry.dependencies]
 python = "^3.9"
+cruft = "^2.11.0"
+cookiecutter = "^2.1.1"
 
 [tool.poetry.group.ci-cd]
 optional = true
