@@ -3,6 +3,22 @@
 We love contributions! If you want to help build and improve our project, please read
 the following guidelines before submitting your contributions.
 
+## Code of Conduct
+
+[Please read our Code of Conduct before contributing][docs-code-of-conduct].
+
+## Conventions
+
+All code must be version-controlled using Git, and regularly pushed to GitHub. Git
+branches are cheap, and commits can be squashed, or fixed-up later on. As such, please
+push code, including work-in-progress code, at regular intervals.
+
+You should regularly rebase or merge code from `main` into your feature branch. This
+ensures you have the latest accepted/reviewed changes, reduces future conflicts, and
+that your developments will not break these accepted changes. Only merge new changes in
+if your code is being used by other contributors. For example, do not rebase new
+changes into a branch currently in review.
+
 ## Contributing requirements
 
 To contribute to this project, please make sure your system meets the following
@@ -117,6 +133,7 @@ nox --session pre-commit testing
 [bandit]: https://bandit.readthedocs.io
 [black]: https://black.readthedocs.io
 [detect-secrets]: https://github.com/Yelp/detect-secrets
+[docs-code-of-conduct]: ./CODE_OF_CONDUCT.md
 [flake8]: https://flake8.pycqa.org
 [flake8-bandit]: https://github.com/tylerwince/flake8-bandit
 [flake8-bugbear]: https://github.com/PyCQA/flake8-bugbear
