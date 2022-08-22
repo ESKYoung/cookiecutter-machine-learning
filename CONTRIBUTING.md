@@ -122,6 +122,9 @@ This runs the following `nox` sessions:
 | `pre-commit` | [Runs pre-commit hooks on all files](#pre-commit-hooks). |
 | `testing`    | Runs the entire pytest suite.                            |
 
+which are also listed in the GitHub Actions `.github/workflows/nox.yml` to ensure
+parallel execution of sessions during CI/CD processes.
+
 To run individual `nox` session(s), add the `session` flag followed by the name of the
 session(s) with space separators, for example:
 
