@@ -43,6 +43,11 @@ project's `README.md` for project-specific requirements as well.
 
 Unless stated otherwise, the codebase is released under the MIT License.
 
+## Documentation
+
+The [documentation for this project can be found at
+`https://ESKYoung.github.io/cookiecutter-machine-learning`][docs-website].
+
 ## Contributing
 
 If you want to [help us build, and improve this project, view our contributing
@@ -50,4 +55,5 @@ guidelines][docs-contributing].
 
 [cruft-installation]: https://cruft.github.io/cruft/#installation
 [docs-contributing]: ./CONTRIBUTING.md
+[docs-website]: https://ESKYoung.github.io/cookiecutter-machine-learning
 [poetry]: https://python-poetry.org

@@ -33,6 +33,7 @@ requirements:
   git clone git@github.com:ESKYoung/cookiecutter-machine-learning.git  # SSH
   ```
 - [pre-commit hooks installed](#pre-commit-hooks)
+- [`act` installed to test GitHub Actions locally](#continuous-integrationcontinuous-deployment-cicd)
 
 Now, install the Poetry virtual environment, including all optional dependency groups.
 
@@ -148,6 +149,34 @@ sphinx-build --builder=html docs docs/_build
 open docs/_build/index.html
 ```
 
+## Continuous integration/continuous deployment (CI/CD)
+
+[This project uses GitHub Actions for CI/CD processes][github-actions]. The following
+GitHub Action workflows are enabled:
+
+| Name                      | Event trigger | Description                                                                                                              |
+| ------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `nox`                     | `push`        | Runs `nox` sessions across multiple Python versions (3.9+), and on Ubuntu and macOS for every `git push`.                |
+| `sphinx-build-and-deploy` | `released`    | Builds, and deploys `Sphinx` documentation to GitHub Pages when a release is published on GitHub. Excludes pre-releases. |
+
+[Install `act` to your system to test GitHub Actions locally before pushing to
+GitHub][act]. Note `act` tests GitHub Actions using Ubuntu runners, so any macOS runs
+will be skipped. By default, calling:
+
+```zsh
+act
+```
+
+runs GitHub Actions with the `push` event trigger. Other event triggers can be invoked
+with additional arguments, for example:
+
+```zsh
+act release
+```
+
+will run GitHub Actions with the `release` event trigger.
+
+[act]: https://github.com/nektos/act
 [bandit]: https://bandit.readthedocs.io
 [black]: https://black.readthedocs.io
 [detect-secrets]: https://github.com/Yelp/detect-secrets
@@ -157,6 +186,7 @@ open docs/_build/index.html
 [flake8-bugbear]: https://github.com/PyCQA/flake8-bugbear
 [flake8-docstrings]: https://gitlab.com/pycqa/flake8-docstrings
 [flake8-rst-docstrings]: https://github.com/peterjc/flake8-rst-docstrings
+[github-actions]: https://docs.github.com/en/actions
 [isort]: https://pycqa.github.io/isort
 [mypy]: https://mypy.readthedocs.io
 [myst-parser]: https://myst-parser.readthedocs.io/en/latest

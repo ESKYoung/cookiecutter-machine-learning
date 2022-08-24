@@ -1,0 +1,51 @@
+name: "Build, and deploy `Sphinx` documentation"
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  sphinx-build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the revision
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Get full Python version
+        id: full-python-version
+        run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
+
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Update PATH to run `poetry`
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Configure Poetry
+        run: poetry config virtualenvs.in-project true
+
+      - name: Set up cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install dependencies
+        run: poetry install --with=docs
+
+      - name: Build documentation
+        run: poetry run sphinx-build -b html docs/ docs/_build
+
+      - name: Deploy documentation to GitHub Pages
+        if: startsWith(github.ref, 'refs/tags')
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs/_build
