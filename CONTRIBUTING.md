@@ -117,10 +117,11 @@ nox
 
 This runs the following `nox` sessions:
 
-| Session name | Description                                              |
-| ------------ | -------------------------------------------------------- |
-| `pre-commit` | [Runs pre-commit hooks on all files](#pre-commit-hooks). |
-| `testing`    | Runs the entire pytest suite.                            |
+| Session name | Description                                                                               |
+| ------------ | ----------------------------------------------------------------------------------------- |
+| `docs`       | Checks the Sphinx documentation builds correctly, and that external hyperlinks are valid. |
+| `pre-commit` | [Runs pre-commit hooks on all files](#pre-commit-hooks).                                  |
+| `testing`    | Runs the entire pytest suite.                                                             |
 
 which are also listed in the GitHub Actions `.github/workflows/nox.yml` to ensure
 parallel execution of sessions during CI/CD processes.
