@@ -133,6 +133,20 @@ cd /path/to/repository
 nox --session pre-commit testing
 ```
 
+## Documentation
+
+Documentation in this project is written in Markdown, and [parsed by MyST-Parser and to
+build a searchable HTML documentation website][myst-parser].
+
+To build, and view the `Sphinx` documentation in the `docs` folder locally, run the
+following commands, which will also open the documentation homepage in your browser:
+
+```zsh
+cd /path/to/repository
+sphinx-build --builder=html docs docs/_build
+open docs/_build/index.html
+```
+
 [bandit]: https://bandit.readthedocs.io
 [black]: https://black.readthedocs.io
 [detect-secrets]: https://github.com/Yelp/detect-secrets
@@ -144,6 +158,7 @@ nox --session pre-commit testing
 [flake8-rst-docstrings]: https://github.com/peterjc/flake8-rst-docstrings
 [isort]: https://pycqa.github.io/isort
 [mypy]: https://mypy.readthedocs.io
+[myst-parser]: https://myst-parser.readthedocs.io/en/latest
 [nox]: https://nox.thea.codes/en/stable
 [nbstripout]: https://github.com/kynan/nbstripout
 [nbqa]: https://nbqa.readthedocs.io
