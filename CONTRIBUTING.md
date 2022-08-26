@@ -42,6 +42,13 @@ cd /path/to/repository
 poetry install --with=ci-cd,docs,pre-commit,testing
 ```
 
+Alternatively, run the following `make` command:
+
+```zsh
+cd /path/to/repository
+make contributor_requirements
+```
+
 ## Pre-commit hooks
 
 pre-commit hooks to ensure consistency, and security in our code before it enters
@@ -107,6 +114,13 @@ pytest --cov --cov-report=html
 open htmlcov/index.html
 ```
 
+Alternatively, run the following `make` command:
+
+```zsh
+cd /path/to/repository
+make coverage_report
+```
+
 [We use `nox` to handle testing on multiple Python versions][nox] to ensure
 compatibility. All `nox` sessions can be run by opening the terminal, and running the
 following commands:
@@ -147,6 +161,13 @@ following commands, which will also open the documentation homepage in your brow
 cd /path/to/repository
 sphinx-build --builder=html docs docs/_build
 open docs/_build/index.html
+```
+
+Alternatively, run the following `make` command:
+
+```zsh
+cd /path/to/repository
+make build_docs
 ```
 
 ## Continuous integration/continuous deployment (CI/CD)
