@@ -1,0 +1,110 @@
+repos:
+  - repo: local
+    hooks:
+      # Secrets detection
+      - id: detect-secrets
+        name: detect-secrets — secrets detection
+        entry: poetry run detect-secrets-hook
+        language: system
+        args: ["--baseline", ".secrets.baseline"]
+
+      # Python code formatting, typing, linting, and vulnerability checks
+      - id: black
+        name: black — Python code formatter (auto-fix)
+        entry: poetry run black
+        language: system
+        types: [python]
+        require_serial: true
+      - id: flake8
+        name: flake8 — PEP8 linter
+        entry: poetry run flake8
+        language: system
+        types: [python]
+        require_serial: true
+      - id: isort
+        name: isort — sort Python imports (auto-fix)
+        entry: poetry run isort
+        language: system
+        types: [python]
+        require_serial: true
+      - id: mypy
+        name: mypy — static Python typing
+        entry: poetry run mypy
+        language: system
+        types: [python]
+        args: ["--ignore-missing-imports", "--scripts-are-modules"]
+        require_serial: true
+      - id: safety
+        name: safety — check for security vulnerabilities in Python packages
+        entry: poetry run safety check
+        language: system
+        pass_filenames: false
+        args: ["--bare"]
+
+      # Jupyter, JupyterLab, Google Colab, and Databricks notebook checks
+      - id: nbstripout
+        name: nbstripout — strip out notebook metadata and outputs (auto-fix)
+        entry: poetry run nbstripout
+        language: system
+        types: [jupyter]
+        args:
+          - --extra-keys
+          - "metadata.colab metadata.kernelspec cell.metadata.colab cell.metadata.executionInfo cell.metadata.id cell.metadata.outputId cell.metadata.application/vnd.databricks.v1+cell metadata.application/vnd.databricks.v1+notebook metadata.interpreter"
+      - id: nbqa-black
+        name: nbqa-black — Python code formatting for notebooks (auto-fix)
+        entry: poetry run nbqa black
+        language: system
+        types: [jupyter]
+        require_serial: true
+      - id: nbqa-flake8
+        name: nbqa-flake8 — PEP8 linter for notebooks
+        entry: poetry run nbqa flake8
+        language: system
+        types: [jupyter]
+        require_serial: true
+        args: ["--ignore=D100"]
+      - id: nbqa-isort
+        name: nbqa-isort — sort Python imports for notebooks (auto-fix)
+        entry: poetry run nbqa isort
+        language: system
+        types: [jupyter]
+        require_serial: true
+      - id: nbqa-mypy
+        name: nbqa-mypy — static Python typing for notebooks
+        entry: poetry run nbqa mypy
+        language: system
+        types: [jupyter]
+        require_serial: true
+
+      # General code formatting
+      - id: end-of-file-fixer
+        name: Fix blank lines at end of files (auto-fix)
+        entry: poetry run end-of-file-fixer
+        language: system
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+        entry: poetry run trailing-whitespace-fixer
+        language: system
+
+      # Other checks
+      - id: check-added-large-files
+        name: Check for added large files (500+ kb)
+        entry: poetry run check-added-large-files
+        language: system
+      - id: check-toml
+        name: Check TOML files syntax
+        entry: poetry run check-toml
+        language: system
+        types: [toml]
+      - id: check-yaml
+        name: Check YAML files syntax
+        entry: poetry run check-yaml
+        language: system
+        types: [yaml]
+
+  # Code formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.7.1
+    hooks:
+      - id: prettier
+        name: prettier — code formatting for various languages (auto-fix)
