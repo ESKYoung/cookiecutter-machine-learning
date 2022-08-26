@@ -36,6 +36,7 @@ repos:
         types: [python]
         args: ["--ignore-missing-imports", "--scripts-are-modules"]
         require_serial: true
+        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/src/"
       - id: safety
         name: safety — check for security vulnerabilities in Python packages
         entry: poetry run safety check
@@ -97,6 +98,7 @@ repos:
         entry: poetry run check-toml
         language: system
         types: [toml]
+        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/pyproject\\.toml$"
       - id: check-yaml
         name: Check YAML files syntax
         entry: poetry run check-yaml
@@ -109,3 +111,4 @@ repos:
     hooks:
       - id: prettier
         name: prettier — code formatting for various languages (auto-fix)
+        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/\\{% if cookiecutter\\.license == \"MIT\" %\\}LICENSE\\{% endif %\\}$"
