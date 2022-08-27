@@ -1,5 +1,8 @@
 {
-  "_copy_without_render": [".github/workflows/*.yml"],
+  "_copy_without_render": [
+    ".github/actions/*/*.yml",
+    ".github/workflows/*.yml"
+  ],
   "_extensions": [
     "cookiecutter.extensions.SlugifyExtension",
     "jinja2_time.TimeExtension"
