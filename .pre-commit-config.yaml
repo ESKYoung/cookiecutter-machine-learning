@@ -36,7 +36,7 @@ repos:
         types: [python]
         args: ["--ignore-missing-imports", "--scripts-are-modules"]
         require_serial: true
-        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/src/"
+        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/(docs/conf.py$|src/|tests/conftest.py$|noxfile.py$)"
       - id: safety
         name: safety — check for security vulnerabilities in Python packages
         entry: poetry run safety check
