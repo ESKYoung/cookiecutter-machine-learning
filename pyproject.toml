@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cookiecutter-machine-learning"
-version = "0.1.0"
+version = "0.2.0"
 description = "A cookiecutter template for machine learning projects in Python."
 license = "MIT"
 authors = ["Eric Young <ESKYoung@users.noreply.github.com>"]
@@ -75,6 +75,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 config = "./pyproject.toml"
+force-exclude = "^/\\{\\{ cookiecutter\\.repository_name \\}\\}/pyproject\\.toml$"
 
 [tool.coverage.paths]
 source = ["hooks", "src"]
