@@ -59,24 +59,32 @@ repos:
         language: system
         types: [jupyter]
         require_serial: true
+        args: ["."]
+        pass_filenames: false
       - id: nbqa-flake8
         name: nbqa-flake8 — PEP8 linter for notebooks
         entry: poetry run nbqa flake8
         language: system
         types: [jupyter]
         require_serial: true
+        args: [".", "--ignore=D100"]
+        pass_filenames: false
       - id: nbqa-isort
         name: nbqa-isort — sort Python imports for notebooks (auto-fix)
         entry: poetry run nbqa isort
         language: system
         types: [jupyter]
         require_serial: true
+        args: ["."]
+        pass_filenames: false
       - id: nbqa-mypy
         name: nbqa-mypy — static Python typing for notebooks
         entry: poetry run nbqa mypy
         language: system
         types: [jupyter]
         require_serial: true
+        args: [".", "--ignore-missing-imports"]
+        pass_filenames: false
 
       # General code formatting
       - id: end-of-file-fixer
