@@ -585,3 +585,7 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/vim,venv,pydev,linux,macos,flask,dotenv,django,direnv,python,windows,virtualenv,pycharm+all,visualstudiocode,jupyternotebooks
 
 ### {{ cookiecutter.repository_name }} ###
+
+# Ignore the contents of the `data` folder, except for the placeholder file `.gitkeep`
+data/*
+!data/.gitkeep
