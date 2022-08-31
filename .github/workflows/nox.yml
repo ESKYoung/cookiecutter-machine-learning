@@ -1,0 +1,52 @@
+name: "Run `nox` sessions"
+
+on: [push]
+
+jobs:
+  nox:
+    name: ${{ matrix.os }} / ${{ matrix.python }} / ${{ matrix.nox_session }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ["3.9", "3.10"]
+        nox_session: ["docs", "pre-commit", "testing"]
+      fail-fast: false
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout the revision
+        uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Get full Python version
+        id: full-python-version
+        run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
+
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Update PATH to run `poetry`
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Configure Poetry
+        run: poetry config virtualenvs.in-project true
+
+      - name: Set up cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install dependencies
+        run: poetry install --with=ci-cd,${{ matrix.nox_session }}
+
+      - name: Run `nox` session `${{ matrix.nox_session }}`
+        run: poetry run nox --force-python python --session ${{ matrix.nox_session }}
