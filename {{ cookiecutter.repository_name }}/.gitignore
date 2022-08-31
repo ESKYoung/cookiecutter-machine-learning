@@ -589,3 +589,7 @@ $RECYCLE.BIN/
 # Ignore the contents of the `data` folder, except for the placeholder file `.gitkeep`
 data/*
 !data/.gitkeep
+
+# Ignore the contents of the `notebooks` folder, except for Jupyter notebooks
+notebooks/*
+!notebooks/*.ipynb

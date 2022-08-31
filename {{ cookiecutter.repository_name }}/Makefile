@@ -5,7 +5,7 @@
 
 # Install contributor-required dependencies
 contributor_requirements:
-	poetry install --with=ci-cd,docs,pre-commit,testing
+	poetry install --with=ci-cd,docs,notebook,pre-commit,testing
 
 # Build the `Sphinx` documentation, and open it
 build_docs: contributor_requirements

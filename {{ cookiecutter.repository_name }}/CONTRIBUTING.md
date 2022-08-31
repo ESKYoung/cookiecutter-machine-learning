@@ -39,7 +39,7 @@ Now, install the Poetry virtual environment, including all optional dependency g
 
 ```zsh
 cd /path/to/repository
-poetry install --with=ci-cd,docs,pre-commit,testing
+poetry install --with=ci-cd,docs,notebook,pre-commit,testing
 ```
 
 Alternatively, run the following `make` command:

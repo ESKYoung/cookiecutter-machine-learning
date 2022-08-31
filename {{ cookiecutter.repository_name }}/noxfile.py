@@ -63,7 +63,10 @@ def run_pre_commit_hooks_on_all_files(nox_session: Session) -> None:
         None.
 
     """
-    install_group_dependencies(nox_session=nox_session, groups=["pre-commit"])
+    install_group_dependencies(
+        nox_session=nox_session,
+        groups=["pre-commit", "notebook"],
+    )
     args = nox_session.posargs or ["run", "--all-files", "--show-diff-on-failure"]
     nox_session.run("pre-commit", *args, external=True)
 
