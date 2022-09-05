@@ -11,7 +11,7 @@ import importlib.metadata
 project = "{{ cookiecutter.project_name }}"
 copyright = "{% now 'utc', '%Y' %}, {{ cookiecutter.author }}"
 author = "{{ cookiecutter.author }}"
-release = importlib.metadata.version("{{ cookiecutter.project_name }}")
+release = importlib.metadata.version("{{ cookiecutter.package_name }}")
 
 # Sphinx extensions
 extensions = [
