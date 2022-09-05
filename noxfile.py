@@ -35,7 +35,10 @@ def install_group_dependencies(
     # Create a temporary folder to store a requirements file of the root package, its
     # main dependencies, and specified group dependencies
     temporary_directory_path = nox_session.create_tmp()
-    temporary_requirements = os.path.join(temporary_directory_path, "requirements.txt")
+    temporary_requirements = os.path.join(
+        temporary_directory_path,
+        f"requirements-{nox_session.name}.txt",
+    )
 
     # Export specific groups to a `requirements.txt` file, and then install them
     nox_session.run_always(
