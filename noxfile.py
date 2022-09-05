@@ -1,7 +1,7 @@
 """Define ``nox`` sessions."""
 
 import os
-from typing import Iterable
+from typing import Iterable, Optional
 
 import nox
 from nox_poetry import Session, session
@@ -18,14 +18,15 @@ nox.options.stop_on_first_error = True
 
 def install_group_dependencies(
     nox_session: Session,
-    groups: Iterable[str],
+    groups: Optional[Iterable[str]] = None,
 ) -> None:
     """Install Poetry group dependencies with the root package.
 
     Args:
         nox_session (Session): a ``nox_poetry.Session`` object.
-        groups (Iterable[str]): an iterable of group names from ``pyproject.toml``,
-            which contain packages required for this session.
+        groups (Optional[Iterable[str]], optional): an iterable of group names from
+            ``pyproject.toml``, which contain packages required for this session. If
+            ``None``, only the ``ci-cd`` dependency group will be installed.
 
     Returns:
         None.
@@ -42,7 +43,7 @@ def install_group_dependencies(
         "export",
         "--format=requirements.txt",
         f"--output={temporary_requirements}",
-        "--with={}".format(",".join(groups)),
+        "--with={}".format(",".join({"ci-cd", *groups}) if groups else "ci-cd"),
         external=True,
     )
     nox_session.install("-r", str(temporary_requirements))
