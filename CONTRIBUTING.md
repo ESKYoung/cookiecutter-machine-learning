@@ -223,9 +223,48 @@ act release
 
 will run GitHub Actions with the `release` event trigger.
 
+## Modifying this `cookiecutter`-based project
+
+[This project uses the `cookiecutter` Python package to build a template for machine
+learning projects][cookiecutter]. Additionally, [we use the `cruft` Python package to
+help update projects created from this template][cruft].
+
+This template can be found in the `{{ cookiecutter.repository_name }}` folder. All
+files in this template folder will be in any created project.
+
+[Files inside the template folder may have Jinja placeholders][jinja]; with
+user-inputted values during the prompts, these placeholders allow us to:
+
+- pre-populate code, and other files
+- add conditional sections of code
+- add conditional files
+- run commands
+
+To learn more about Jinja templating, refer to the `cookiecutter` and/or Jinja
+documentation.
+
+At the root-level of this repository, you will find a `hooks`, and `src` folder. The
+`hooks` folder contains any pre- or post-generation hooks. The `src` folder contains
+any extra code required by this project when creating the templates.
+
+Pre- and post-generation hooks are scripts that `cookiecutter` will run either before
+(pre-generation), or after (post-generation) creating a project from the template. If
+one or more pre-generation hooks fail, no project will be created from the template. If
+one or more post-generation hooks fail, the created project will be automatically
+cleaned up. Refer to the `cookiecutter` documentation for more information about these
+hooks.
+
+Note that modifying files outside the template folder, will not change those inside
+the template folder. For example, if you would like to implement a new pre-commit hook
+for this project, as well as for any downstream projects created from the template, you
+must add the new hook to both `.pre-commit-config.yaml`, and
+`{{ cookiecutter.repository_name }}/.pre-commit-config.yaml`.
+
 [act]: https://github.com/nektos/act
 [bandit]: https://bandit.readthedocs.io
 [black]: https://black.readthedocs.io
+[cookiecutter]: https://github.com/cookiecutter/cookiecutter
+[cruft]: https://cruft.github.io/cruft
 [detect-secrets]: https://github.com/Yelp/detect-secrets
 [docs-code-of-conduct]: ./CODE_OF_CONDUCT.md
 [flake8]: https://flake8.pycqa.org
@@ -236,6 +275,7 @@ will run GitHub Actions with the `release` event trigger.
 [github-actions]: https://docs.github.com/en/actions
 [govuk-content-writing]: https://www.gov.uk/guidance/content-design/writing-for-gov-uk
 [isort]: https://pycqa.github.io/isort
+[jinja]: https://jinja.palletsprojects.com
 [markdown-external-links]: https://www.markdownguide.org/basic-syntax
 [mypy]: https://mypy.readthedocs.io
 [myst-parser]: https://myst-parser.readthedocs.io/en/latest
