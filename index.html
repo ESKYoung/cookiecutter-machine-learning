@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>cookiecutter-machine-learning &#8212; cookiecutter-machine-learning 0.1.0 documentation</title>
+    <title>cookiecutter-machine-learning &#8212; cookiecutter-machine-learning 1.0.0 documentation</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -66,7 +66,7 @@
   
   
   
-    <p class="title logo__title">cookiecutter-machine-learning 0.1.0 documentation</p>
+    <p class="title logo__title">cookiecutter-machine-learning 1.0.0 documentation</p>
   
 </a>
     
@@ -88,6 +88,12 @@
  </a>
 </li>
 
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="reference/reference.html">
+  API reference
+ </a>
+</li>
+
     
 </ul>
       </div>
@@ -106,6 +112,10 @@
       
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.github.com/ESKYoung/cookiecutter-machine-learning" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
       </ul>
       </div>
       
@@ -183,6 +193,13 @@
     
     <div class="toc-item">
       
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/ESKYoung/cookiecutter-machine-learning/edit/main/docs/index.md">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
     </div>
     
   
@@ -212,13 +229,28 @@ cruft create https://github.com/ESKYoung/cookiecutter-machine-learning.git
 cruft create git@github.com:ESKYoung/cookiecutter-machine-learning.git
 </pre></div>
 </div>
+<p>Once the project has been created, navigate to it, and initialise Git.</p>
+<div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /path/to/project
+git init
+</pre></div>
+</div>
+<p>Next, set up your project by following the requirements set out in its
+<code class="docutils literal notranslate"><span class="pre">CONTRIBUTING.md</span></code>. Now, stage all the files in Git, and make the project’s first commit.</p>
+<div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /path/to/project
+git add .
+git commit
+</pre></div>
+</div>
+<p>Finally, <a class="reference external" href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository">create an empty GitHub repository without any optional
+files</a>, or <a class="reference external" href="https://docs.gitlab.com/ee/user/project/working_with_projects.html">create a blank project on GitLab without any optional
+files</a> and follow the instructions to push your first commit.</p>
 <section id="requirements">
 <h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">#</a></h3>
 <p>To get started, your system should meet the following requirements:</p>
 <ul>
 <li><p>Git 2.36+ installed</p></li>
 <li><p>Python 3.9+ installed</p></li>
-<li><p><a class="reference external" href="https://cruft.github.io/cruft/#installation">cruft 2.11.0+ installed</a>; for macOS users, this is also
+<li><p><a class="reference external" href="https://cruft.github.io/cruft">cruft 2.11.0+ installed</a>; for macOS users, this is also
 available from Homebrew</p>
 <div class="highlight-zsh notranslate"><div class="highlight"><pre><span></span>brew install cruft
 </pre></div>

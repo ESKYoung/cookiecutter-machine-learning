@@ -7,4 +7,5 @@
 :hidden:
 :maxdepth: 2
 CONTRIBUTING.md
+reference/reference.md
 ```
