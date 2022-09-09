@@ -27,7 +27,7 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: Install dependencies
-        run: poetry install --with=ci-cd,${{ matrix.nox_session }}
+        run: poetry install --with=ci-cd,${{ matrix.nox_session }} --sync
 
       - name: Run `nox` session `${{ matrix.nox_session }}`
         run: poetry run nox --force-python python --session ${{ matrix.nox_session }}
