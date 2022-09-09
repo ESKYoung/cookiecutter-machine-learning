@@ -590,6 +590,13 @@ $RECYCLE.BIN/
 data/*
 !data/.gitkeep
 
+# Ignore the `docs/_build` folder; this is where the Sphinx documentation is built
+docs/_build/*
+
+# Ignore the `docs/reference/api` folder; this is where `sphinx.ext.autosummary` stubs
+# are stored
+docs/reference/api/*
+
 # Ignore the contents of the `notebooks` folder, except for Jupyter notebooks
 notebooks/*
 !notebooks/*.ipynb

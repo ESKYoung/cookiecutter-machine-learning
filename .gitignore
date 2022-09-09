@@ -585,3 +585,10 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/vim,venv,pydev,linux,macos,flask,dotenv,django,direnv,python,windows,virtualenv,pycharm+all,visualstudiocode,jupyternotebooks
 
 ### cookiecutter-machine-learning ###
+
+# Ignore the `docs/_build` folder; this is where the Sphinx documentation is built
+docs/_build/*
+
+# Ignore the `docs/reference/api` folder; this is where `sphinx.ext.autosummary` stubs
+# are stored
+docs/reference/api/*

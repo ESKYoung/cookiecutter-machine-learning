@@ -11,6 +11,7 @@ contributor_requirements:
 
 # Build the `Sphinx` documentation, and open it
 build_docs: contributor_requirements
+	rm -rf docs/_build docs/reference/api
 	sphinx-build -b=html docs docs/_build
 	open docs/_build/index.html
 
