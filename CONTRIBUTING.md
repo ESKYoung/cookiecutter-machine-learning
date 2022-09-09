@@ -84,8 +84,6 @@ The following hooks are enabled for this project:
 | [`isort`][isort]                                 | Sort Python imports in a specified, and consistent order.                                                                                                                                                                                          |
 | [`mypy`][mypy]                                   | Static type checker to ensure functions/classes have type hints, and they are used correctly.                                                                                                                                                      |
 | [`safety`][safety]                               | Checks Python dependencies for known vulnerabilities.                                                                                                                                                                                              |
-| [`nbstripout`][nbstripout]                       | Strips outputs and metadata from notebooks (Jupyter, Google Colab, Databricks) for security and to reduce data leakage.                                                                                                                            |
-| [`nbqa`][nbqa]                                   | Run formatters, linters, and other tools on notebooks. Currently set for `black`, `flake8`, `isort`, and `mypy`.                                                                                                                                   |
 | `end-of-file-fixer`                              | Ensure files end with a blank line.                                                                                                                                                                                                                |
 | `trailing-whitespace`                            | Remove any trailing blank space in code.                                                                                                                                                                                                           |
 | `check-added-large-files`                        | Prevent any large (500 KB+) files from entering version control.                                                                                                                                                                                   |
@@ -284,8 +282,6 @@ must add the new hook to both `.pre-commit-config.yaml`, and
 [mypy]: https://mypy.readthedocs.io
 [myst-parser]: https://myst-parser.readthedocs.io/en/latest
 [nox]: https://nox.thea.codes/en/stable
-[nbstripout]: https://github.com/kynan/nbstripout
-[nbqa]: https://nbqa.readthedocs.io
 [poetry]: https://python-poetry.org
 [pre-commit]: https://pre-commit.com
 [prettier]: https://prettier.io
