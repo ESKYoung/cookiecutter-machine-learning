@@ -136,6 +136,7 @@ This runs the following `nox` sessions:
 
 | Session name | Description                                                                               |
 | ------------ | ----------------------------------------------------------------------------------------- |
+| `_example`   | Build an example project called `Example Project`, and run its `nox` sessions.            |
 | `docs`       | Checks the Sphinx documentation builds correctly, and that external hyperlinks are valid. |
 | `pre-commit` | [Runs pre-commit hooks on all files](#pre-commit-hooks).                                  |
 | `testing`    | Runs the entire pytest suite.                                                             |
@@ -152,7 +153,8 @@ These `nox` sessions are also [run as part of the CI/CD process using GitHub
 Actions](#continuous-integrationcontinuous-deployment-cicd). For ease, the `nox`
 session name is identical to any required Poetry dependency group so that GitHub
 Actions can easily install the correct dependencies, and run `nox` sessions in
-parallel. See the configuration script at `.github/workflows.yml` for further details.
+parallel. Sessions that do not require any Poetry dependency groups are named with a
+`_` prefix. See the configuration script at `.github/workflows.yml` for further details.
 
 ## Documentation
 
