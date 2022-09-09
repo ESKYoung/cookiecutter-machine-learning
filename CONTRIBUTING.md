@@ -93,6 +93,10 @@ The following hooks are enabled for this project:
 | `check-yaml`                                     | Check YAML files for valid syntax.                                                                                                                                                                                                                 |
 | [`prettier`][prettier]                           | Standardise formatting for JavaScript, TypeScript, Flow, JSX, JSON, CSS, SCSS, Less, HTML, Vue, Angular, GraphQL, Markdown, and YAML files.                                                                                                        |
 
+These hooks can be configured in the `.pre-commit-config.yaml` file; please refer to
+the `pre-commit` documentation, and the individual packages used for these hooks for
+further information.
+
 ## Testing
 
 [Tests are written using `pytest`][pytest], and can be found in the `tests` folder.
