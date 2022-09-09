@@ -45,6 +45,20 @@ html_context = {
     "doc_path": "docs",
 }
 
+# HTML theme options
+html_theme_options = {
+    "collapse_navigation": True,
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://www.github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repository_name }}",  # noqa: B950
+            "icon": "fab fa-github-square",
+        },
+    ],
+    "navigation_depth": 2,
+    "use_edit_page_button": True,
+}
+
 # `sphinx.ext.autosectionlabel` configurations
 autosectionlabel_prefix_document = True
 
