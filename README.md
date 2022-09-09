@@ -21,6 +21,26 @@ cd /path/to/parent/of/project
 cruft create git@github.com:ESKYoung/cookiecutter-machine-learning.git
 ```
 
+Once the project has been created, navigate to it, and initialise Git.
+
+```zsh
+cd /path/to/project
+git init
+```
+
+Next, set up your project by following the requirements set out in its
+`CONTRIBUTING.md`. Now, stage all the files in Git, and make the project's first commit.
+
+```zsh
+cd /path/to/project
+git add .
+git commit
+```
+
+Finally, [create an empty GitHub repository without any optional
+files][github-create-repo], or [create a blank project on GitLab without any optional
+files][gitlab-create-repo] and follow the instructions to push your first commit.
+
 ### Requirements
 
 To get started, your system should meet the following requirements:
@@ -56,4 +76,6 @@ guidelines][docs-contributing].
 [cruft-installation]: https://cruft.github.io/cruft
 [docs-contributing]: ./CONTRIBUTING.md
 [docs-website]: https://ESKYoung.github.io/cookiecutter-machine-learning
+[github-create-repo]: https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository
+[gitlab-create-repo]: https://docs.gitlab.com/ee/user/project/working_with_projects.html
 [poetry]: https://python-poetry.org
