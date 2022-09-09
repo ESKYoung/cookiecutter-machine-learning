@@ -170,5 +170,8 @@ def build_example_project(nox_session: Session) -> None:
         nox_session.run("git", "init", "--quiet", external=True)
         nox_session.run("git", "add", ".", external=True)
 
-        # Run the example project `nox` sessions
-        nox_session.run("nox", external=True)
+        # Run the example project `nox` sessions, but only using the current `nox`
+        # session's version of Python. This prevents issues with CI/CD checks not
+        # having the multiple Python versions installed, but also reduces the number
+        # of overall `nox` sessions that are run
+        nox_session.run("nox", f"--force-python={nox_session.python}", external=True)
