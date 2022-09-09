@@ -29,7 +29,7 @@ The [documentation for this project can be found at
 If you want to [help us build, and improve this project, view our contributing
 guidelines][docs-contributing].
 
-[cruft-installation]: https://cruft.github.io/cruft/#installation
+[cruft-installation]: https://cruft.github.io/cruft
 [docs-contributing]: ./CONTRIBUTING.md
 
 [docs-website]: https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.repository_name }}

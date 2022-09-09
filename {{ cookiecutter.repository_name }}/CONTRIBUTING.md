@@ -51,7 +51,7 @@ make contributor_requirements
 
 ## Pre-commit hooks
 
-pre-commit hooks to ensure consistency, and security in our code before it enters
+Pre-commit hooks to ensure consistency, and security in our code before it enters
 version control.
 
 Run the following commands once, to always install pre-commit hooks for any project
@@ -170,6 +170,32 @@ cd /path/to/repository
 make build_docs
 ```
 
+### Writing documentation
+
+Documentation should be written in clear, and plain English. Although contentious, we
+try to wrap lines at 88 characters; this can allow for easier review of raw Markdown,
+although arguably Git diffs can become more complicated.
+
+[Try to use reference-style external links][markdown-external-links] wherever possible,
+as this makes the raw Markdown easier to read. Also try to avoid linking to the same
+place more than once. [For content writing guidance, refer to GOV.UK's Content Design
+pages][govuk-content-writing].
+
+Please refer to the MyST-Parser documentation pages on how to include Sphinx-related
+components in the outputted HTML website. This includes notes, warnings, images, and
+including Markdown files from outside the `docs` folder, like this file.
+
+Detailed guidance should be stored in, and referenced from the `docs` folder.
+High-level documentation, such as the `README.md`, and this file, should be stored at
+the root-level of the repository, and included in `docs` using MyST-Parser. For an
+example, see how the `README.md` is included by using MyST-Parser in `docs/index.md`.
+
+[Sphinx is configured in the `docs/conf.py` file][sphinx]; please refer to their
+documentation for further information. Note that the CI/CD process will automatically
+check for valid external links. If you need to ignore any external links from this
+checker, add a valid regular expression pattern to the `linkcheck_ignore` variable in
+`docs/conf.py`
+
 ## Continuous integration/continuous deployment (CI/CD)
 
 [This project uses GitHub Actions for CI/CD processes][github-actions]. The following
@@ -208,7 +234,9 @@ will run GitHub Actions with the `release` event trigger.
 [flake8-docstrings]: https://gitlab.com/pycqa/flake8-docstrings
 [flake8-rst-docstrings]: https://github.com/peterjc/flake8-rst-docstrings
 [github-actions]: https://docs.github.com/en/actions
+[govuk-content-writing]: https://www.gov.uk/guidance/content-design/writing-for-gov-uk
 [isort]: https://pycqa.github.io/isort
+[markdown-external-links]: https://www.markdownguide.org/basic-syntax
 [mypy]: https://mypy.readthedocs.io
 [myst-parser]: https://myst-parser.readthedocs.io/en/latest
 [nox]: https://nox.thea.codes/en/stable
@@ -219,3 +247,4 @@ will run GitHub Actions with the `release` event trigger.
 [prettier]: https://prettier.io
 [pytest]: https://docs.pytest.org/en/7.1.x
 [safety]: https://pyup.io/safety
+[sphinx]: https://www.sphinx-doc.org
