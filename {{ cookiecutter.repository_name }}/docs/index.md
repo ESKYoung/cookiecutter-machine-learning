@@ -7,5 +7,7 @@
 :hidden:
 :maxdepth: 2
 CONTRIBUTING.md
+assumptions.md
+data_sources.md
 reference/reference.md
 ```

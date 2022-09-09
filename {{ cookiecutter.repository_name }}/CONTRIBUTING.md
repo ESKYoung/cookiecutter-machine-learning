@@ -29,8 +29,8 @@ requirements:
 - [Poetry 1.2 installed][poetry]
 - a local clone of this project
   ```zsh
-  git clone https://github.com/ESKYoung/cookiecutter-machine-learning.git  # HTTPS
-  git clone git@github.com:ESKYoung/cookiecutter-machine-learning.git  # SSH
+  git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repository_name }}.git  # HTTPS
+  git clone git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.repository_name }}.git  # SSH
   ```
 - [pre-commit hooks installed](#pre-commit-hooks)
 - [`act` installed to test GitHub Actions locally](#continuous-integrationcontinuous-deployment-cicd)
@@ -39,7 +39,7 @@ Now, install the Poetry virtual environment, including all optional dependency g
 
 ```zsh
 cd /path/to/repository
-poetry install --with=ci-cd,docs,pre-commit,testing --sync
+poetry install --with=ci-cd,docs,notebook,pre-commit,testing --sync
 ```
 
 Alternatively, run the following `make` command:
@@ -84,6 +84,8 @@ The following hooks are enabled for this project:
 | [`isort`][isort]                                 | Sort Python imports in a specified, and consistent order.                                                                                                                                                                                          |
 | [`mypy`][mypy]                                   | Static type checker to ensure functions/classes have type hints, and they are used correctly.                                                                                                                                                      |
 | [`safety`][safety]                               | Checks Python dependencies for known vulnerabilities.                                                                                                                                                                                              |
+| [`nbstripout`][nbstripout]                       | Strips outputs and metadata from notebooks (Jupyter, Google Colab, Databricks) for security and to reduce data leakage.                                                                                                                            |
+| [`nbqa`][nbqa]                                   | Run formatters, linters, and other tools on notebooks. Currently set for `black`, `flake8`, `isort`, and `mypy`.                                                                                                                                   |
 | `end-of-file-fixer`                              | Ensure files end with a blank line.                                                                                                                                                                                                                |
 | `trailing-whitespace`                            | Remove any trailing blank space in code.                                                                                                                                                                                                           |
 | `check-added-large-files`                        | Prevent any large (500 KB+) files from entering version control.                                                                                                                                                                                   |
@@ -136,7 +138,6 @@ This runs the following `nox` sessions:
 
 | Session name | Description                                                                               |
 | ------------ | ----------------------------------------------------------------------------------------- |
-| `_example`   | Build an example project called `Example Project`, and run its `nox` sessions.            |
 | `docs`       | Checks the Sphinx documentation builds correctly, and that external hyperlinks are valid. |
 | `pre-commit` | [Runs pre-commit hooks on all files](#pre-commit-hooks).                                  |
 | `testing`    | Runs the entire pytest suite.                                                             |
@@ -153,8 +154,7 @@ These `nox` sessions are also [run as part of the CI/CD process using GitHub
 Actions](#continuous-integrationcontinuous-deployment-cicd). For ease, the `nox`
 session name is identical to any required Poetry dependency group so that GitHub
 Actions can easily install the correct dependencies, and run `nox` sessions in
-parallel. Sessions that do not require any Poetry dependency groups are named with a
-`_` prefix. See the configuration script at `.github/workflows.yml` for further details.
+parallel. See the configuration script at `.github/workflows.yml` for further details.
 
 ## Documentation
 
@@ -190,7 +190,7 @@ pages][govuk-content-writing].
 
 Please refer to the MyST-Parser documentation pages on how to include Sphinx-related
 components in the outputted HTML website. This includes notes, warnings, images, and
-including Markdown files from outside the `docs` folder.
+including Markdown files from outside the `docs` folder, like this file.
 
 Detailed guidance should be stored in, and referenced from the `docs` folder.
 High-level documentation, such as the `README.md`, and this file, should be stored at
@@ -230,48 +230,9 @@ act release
 
 will run GitHub Actions with the `release` event trigger.
 
-## Modifying this `cookiecutter`-based project
-
-[This project uses the `cookiecutter` Python package to build a template for machine
-learning projects][cookiecutter]. Additionally, [we use the `cruft` Python package to
-help update projects created from this template][cruft].
-
-This template can be found in the `{{ cookiecutter.repository_name }}` folder. All
-files in this template folder will be in any created project.
-
-[Files inside the template folder may have Jinja placeholders][jinja]; with
-user-inputted values during the prompts, these placeholders allow us to:
-
-- pre-populate code, and other files
-- add conditional sections of code
-- add conditional files
-- run commands
-
-To learn more about Jinja templating, refer to the `cookiecutter` and/or Jinja
-documentation.
-
-At the root-level of this repository, you will find a `hooks`, and `src` folder. The
-`hooks` folder contains any pre- or post-generation hooks. The `src` folder contains
-any extra code required by this project when creating the templates.
-
-Pre- and post-generation hooks are scripts that `cookiecutter` will run either before
-(pre-generation), or after (post-generation) creating a project from the template. If
-one or more pre-generation hooks fail, no project will be created from the template. If
-one or more post-generation hooks fail, the created project will be automatically
-cleaned up. Refer to the `cookiecutter` documentation for more information about these
-hooks.
-
-Note that modifying files outside the template folder, will not change those inside
-the template folder. For example, if you would like to implement a new pre-commit hook
-for this project, as well as for any downstream projects created from the template, you
-must add the new hook to both `.pre-commit-config.yaml`, and
-`{{ cookiecutter.repository_name }}/.pre-commit-config.yaml`.
-
 [act]: https://github.com/nektos/act
 [bandit]: https://bandit.readthedocs.io
 [black]: https://black.readthedocs.io
-[cookiecutter]: https://github.com/cookiecutter/cookiecutter
-[cruft]: https://cruft.github.io/cruft
 [detect-secrets]: https://github.com/Yelp/detect-secrets
 [docs-code-of-conduct]: ./CODE_OF_CONDUCT.md
 [flake8]: https://flake8.pycqa.org
@@ -282,11 +243,12 @@ must add the new hook to both `.pre-commit-config.yaml`, and
 [github-actions]: https://docs.github.com/en/actions
 [govuk-content-writing]: https://www.gov.uk/guidance/content-design/writing-for-gov-uk
 [isort]: https://pycqa.github.io/isort
-[jinja]: https://jinja.palletsprojects.com
 [markdown-external-links]: https://www.markdownguide.org/basic-syntax
 [mypy]: https://mypy.readthedocs.io
 [myst-parser]: https://myst-parser.readthedocs.io/en/latest
 [nox]: https://nox.thea.codes/en/stable
+[nbstripout]: https://github.com/kynan/nbstripout
+[nbqa]: https://nbqa.readthedocs.io
 [poetry]: https://python-poetry.org
 [pre-commit]: https://pre-commit.com
 [prettier]: https://prettier.io

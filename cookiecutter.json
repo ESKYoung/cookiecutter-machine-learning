@@ -1,0 +1,21 @@
+{
+  "_copy_without_render": [
+    ".github/actions/*/*.yml",
+    ".github/workflows/*.yml"
+  ],
+  "_extensions": [
+    "cookiecutter.extensions.SlugifyExtension",
+    "jinja2_time.TimeExtension"
+  ],
+
+  "author": "Author's name",
+  "email": "Email address",
+  "github_username": "Username",
+
+  "project_name": "Your new project's name",
+  "repository_name": "{{ cookiecutter.project_name | lower | slugify }}",
+  "package_name": "{{ cookiecutter.repository_name | lower | slugify(separator='_') }}",
+  "license": ["MIT", "None"],
+  "release": "0.1.0",
+  "description": "A brief description of your new project"
+}

@@ -1,0 +1,43 @@
+name: "Install `poetry`"
+description: "Installs Poetry to a runner."
+
+inputs:
+  python-version:
+    description: "Version range or exact version of Python or PyPy to use."
+
+outputs:
+  full-python-version:
+    description: "Full Python version used when installing Poetry."
+    value: ${{ steps.full-python-version.outputs.version }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python ${{ inputs.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Get full Python version
+      id: full-python-version
+      run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
+      shell: bash
+
+    - name: Install Poetry
+      run: curl -sSL https://install.python-poetry.org | python3 -
+      shell: bash
+
+    - name: Update PATH to run `poetry`
+      run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+      shell: bash
+
+    - name: Configure Poetry
+      run: poetry config virtualenvs.in-project true
+      shell: bash
+
+    - name: Set up cache
+      uses: actions/cache@v3
+      id: cache
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}

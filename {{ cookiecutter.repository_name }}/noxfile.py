@@ -1,7 +1,6 @@
 """Define ``nox`` sessions."""
 
 import os
-from tempfile import TemporaryDirectory
 from typing import Iterable, Optional
 
 import nox
@@ -68,7 +67,10 @@ def run_pre_commit_hooks_on_all_files(nox_session: Session) -> None:
         None.
 
     """
-    install_group_dependencies(nox_session=nox_session, groups=["pre-commit"])
+    install_group_dependencies(
+        nox_session=nox_session,
+        groups=["pre-commit", "notebook"],
+    )
     args = nox_session.posargs or ["run", "--all-files", "--show-diff-on-failure"]
     nox_session.run("pre-commit", *args, external=True)
 
@@ -112,66 +114,3 @@ def build_and_test_sphinx_documentation(nox_session: Session, builder: str) -> N
     docs_build_directory = os.path.join(nox_session.env["TMPDIR"], "docs/_build")
     args = nox_session.posargs or ["docs", docs_build_directory]
     nox_session.run("sphinx-build", "-b", builder, *args, external=True)
-
-
-@session(name="_example", python=PYTHON_VERSIONS)
-def build_example_project(nox_session: Session) -> None:
-    """Build an example project to test it has been developed created.
-
-    Args:
-        nox_session (Session): a ``nox_poetry.Session`` object.
-
-    Returns:
-        None.
-
-    """
-    install_group_dependencies(nox_session=nox_session)
-
-    # Create a temporary directory, where an example project will be build for testing
-    # purposes. This is required, as the example project needs Git initialised, and it
-    # cannot be inside an existing Git repository
-    with TemporaryDirectory() as temporary_directory:
-
-        example_project_repository = os.path.join(
-            temporary_directory, "example-project"
-        )
-        example_project_requirements = os.path.join(
-            example_project_repository,
-            f"requirements-{nox_session.name}.txt",
-        )
-
-        # Run `cookiecutter` using this project to create an example project called
-        # "Example Project"; use the default values for all other inputs
-        nox_session.run(
-            "cookiecutter",
-            f"--output-dir={temporary_directory}",
-            "--no-input",
-            os.getcwd(),
-            "project_name=Example Project",
-        )
-
-        # Change the current working directory for the `nox` session
-        nox_session.chdir(example_project_repository)
-
-        # Remove any Python packages in the current `nox` session, and install the
-        # example project main dependencies
-        with open(example_project_requirements, "w") as f:
-            f.write(str(nox_session.run("pip", "freeze", silent=True, external=True)))
-        nox_session.run(
-            "pip",
-            "uninstall",
-            "--yes",
-            "--quiet",
-            f"--requirement={example_project_requirements}",
-        )
-        install_group_dependencies(nox_session=nox_session)
-
-        # Initialise Git in the example project, and stage all changes
-        nox_session.run("git", "init", "--quiet", external=True)
-        nox_session.run("git", "add", ".", external=True)
-
-        # Run the example project `nox` sessions, but only using the current `nox`
-        # session's version of Python. This prevents issues with CI/CD checks not
-        # having the multiple Python versions installed, but also reduces the number
-        # of overall `nox` sessions that are run
-        nox_session.run("nox", f"--force-python={nox_session.python}", external=True)

@@ -8,10 +8,10 @@ https://www.sphinx-doc.org/en/master/usage/configuration.html
 import importlib.metadata
 
 # Project information
-project = "cookiecutter-machine-learning"
-copyright = "2022, Eric Young"
-author = "Eric Young"
-release = importlib.metadata.version("cookiecutter-machine-learning")
+project = "{{ cookiecutter.project_name }}"
+copyright = "{% now 'utc', '%Y' %}, {{ cookiecutter.author }}"
+author = "{{ cookiecutter.author }}"
+release = importlib.metadata.version("{{ cookiecutter.package_name }}")
 
 # Sphinx extensions
 extensions = [
@@ -39,8 +39,8 @@ html_static_path = ["_static"]
 
 # HTML context information for the theme
 html_context = {
-    "github_repo": "cookiecutter-machine-learning",
-    "github_user": "ESKYoung",
+    "github_repo": "{{ cookiecutter.repository_name }}",
+    "github_user": "{{ cookiecutter.github_username }}",
     "github_version": "main",
     "doc_path": "docs",
 }
@@ -51,7 +51,7 @@ html_theme_options = {
     "icon_links": [
         {
             "name": "GitHub",
-            "url": "https://www.github.com/ESKYoung/cookiecutter-machine-learning",
+            "url": "https://www.github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repository_name }}",  # noqa: B950
             "icon": "fab fa-github-square",
         },
     ],
@@ -67,8 +67,8 @@ autosummary_generate = True
 
 # `sphinx.builders.linkcheck` configurations
 linkcheck_ignore = [
-    r"^https://ESKYoung.github.io/cookiecutter-machine-learning$",
-    r"^https://ESKYoung.github.io/cookiecutter-machine-learning/",
+    r"^https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.repository_name }}$",  # noqa: B950
+    r"^https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.repository_name }}/",  # noqa: B950
 ]
 
 # `myst_parser` configurations

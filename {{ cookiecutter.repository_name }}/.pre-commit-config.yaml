@@ -15,8 +15,6 @@ repos:
         language: system
         types: [python]
         require_serial: true
-        args: ["."]
-        pass_filenames: false
       - id: flake8
         name: flake8 — PEP8 linter
         entry: poetry run flake8
@@ -36,13 +34,47 @@ repos:
         types: [python]
         args: ["--ignore-missing-imports", "--scripts-are-modules"]
         require_serial: true
-        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/(docs/conf.py$|src/|tests/conftest.py$|noxfile.py$)"
       - id: safety
         name: safety — check for security vulnerabilities in Python packages
         entry: poetry run safety check
         language: system
         pass_filenames: false
         args: ["--bare"]
+
+      # Jupyter, JupyterLab, Google Colab, and Databricks notebook checks
+      - id: nbstripout
+        name: nbstripout — strip out notebook metadata and outputs (auto-fix)
+        entry: poetry run nbstripout
+        language: system
+        types: [jupyter]
+        args:
+          - --extra-keys
+          - "metadata.colab metadata.kernelspec cell.metadata.colab cell.metadata.executionInfo cell.metadata.id cell.metadata.outputId cell.metadata.application/vnd.databricks.v1+cell metadata.application/vnd.databricks.v1+notebook metadata.interpreter"
+      - id: nbqa-black
+        name: nbqa-black — Python code formatting for notebooks (auto-fix)
+        entry: poetry run nbqa black
+        language: system
+        types: [jupyter]
+        require_serial: true
+      - id: nbqa-flake8
+        name: nbqa-flake8 — PEP8 linter for notebooks
+        entry: poetry run nbqa flake8
+        language: system
+        types: [jupyter]
+        require_serial: true
+        args: ["--ignore=D100"]
+      - id: nbqa-isort
+        name: nbqa-isort — sort Python imports for notebooks (auto-fix)
+        entry: poetry run nbqa isort
+        language: system
+        types: [jupyter]
+        require_serial: true
+      - id: nbqa-mypy
+        name: nbqa-mypy — static Python typing for notebooks
+        entry: poetry run nbqa mypy
+        language: system
+        types: [jupyter]
+        require_serial: true
 
       # General code formatting
       - id: end-of-file-fixer
@@ -64,7 +96,6 @@ repos:
         entry: poetry run check-toml
         language: system
         types: [toml]
-        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/pyproject\\.toml$"
       - id: check-yaml
         name: Check YAML files syntax
         entry: poetry run check-yaml
@@ -77,4 +108,3 @@ repos:
     hooks:
       - id: prettier
         name: prettier — code formatting for various languages (auto-fix)
-        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/\\{% if cookiecutter\\.license == \"MIT\" %\\}LICENSE\\{% endif %\\}$"

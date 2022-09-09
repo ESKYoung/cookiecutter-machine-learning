@@ -10,7 +10,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         python: ["3.9", "3.10"]
-        nox_session: ["_example", "docs", "pre-commit", "testing"]
+        nox_session: ["docs", "pre-commit", "testing"]
       fail-fast: false
     defaults:
       run:
