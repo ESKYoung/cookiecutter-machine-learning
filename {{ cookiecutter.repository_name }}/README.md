@@ -31,6 +31,8 @@ guidelines][docs-contributing].
 
 [cruft-installation]: https://cruft.github.io/cruft
 [docs-contributing]: ./CONTRIBUTING.md
-
-[docs-website]: https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.repository_name }}
 [poetry]: https://python-poetry.org
+
+<!-- prettier-ignore-start -->
+[docs-website]: https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.repository_name }}
+<!-- prettier-ignore-end -->
