@@ -142,9 +142,6 @@ This runs the following `nox` sessions:
 | `pre-commit` | [Runs pre-commit hooks on all files](#pre-commit-hooks).                                  |
 | `testing`    | Runs the entire pytest suite.                                                             |
 
-which are also listed in the GitHub Actions `.github/workflows/nox.yml` to ensure
-parallel execution of sessions during CI/CD processes.
-
 To run individual `nox` session(s), add the `session` flag followed by the name of the
 session(s) with space separators, for example:
 
@@ -152,6 +149,12 @@ session(s) with space separators, for example:
 cd /path/to/repository
 nox --session pre-commit testing
 ```
+
+These `nox` sessions are also [run as part of the CI/CD process using GitHub
+Actions](#continuous-integrationcontinuous-deployment-cicd). For ease, the `nox`
+session name is identical to any required Poetry dependency group so that GitHub
+Actions can easily install the correct dependencies, and run `nox` sessions in
+parallel. See the configuration script at `.github/workflows.yml` for further details.
 
 ## Documentation
 
