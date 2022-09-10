@@ -13,12 +13,12 @@ jobs:
         nox_session: ["_example", "docs", "pre-commit", "testing"]
         exclude:
           - os: macos-latest
-            python: "3.10"
             nox_session: "docs"
           - os: macos-latest
-            nox_session: "testing"
-          - os: macos-latest
-            python: "3.10"
+            nox_session: "pre-commit"
+          - python: "3.10"
+            nox_session: "docs"
+          - python: "3.10"
             nox_session: "pre-commit"
       fail-fast: true
     defaults:
