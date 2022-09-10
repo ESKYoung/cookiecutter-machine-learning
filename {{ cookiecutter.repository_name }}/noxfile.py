@@ -53,7 +53,10 @@ def install_group_dependencies(
     nox_session.poetry.installroot()
 
 
-@session(name="pre-commit")  # session name must match Poetry group dependency name
+@session(
+    name="pre-commit",  # session name must match Poetry group dependency name
+    python=PYTHON_VERSIONS,
+)
 def run_pre_commit_hooks_on_all_files(nox_session: Session) -> None:
     """Run pre-commit hooks on all files, and check the hooks pass.
 
@@ -91,7 +94,10 @@ def run_pytest_suite(nox_session: Session) -> None:
     nox_session.run("pytest", *args, success_codes=[0, 5], external=True)
 
 
-@session(name="docs")  # session name must match Poetry group dependency name
+@session(
+    name="docs",  # session name must match Poetry group dependency name
+    python=PYTHON_VERSIONS,
+)
 @nox.parametrize("builder", ["html", "linkcheck"])
 def build_and_test_sphinx_documentation(nox_session: Session, builder: str) -> None:
     """Build the Sphinx documentation, and check it works correctly.
