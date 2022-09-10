@@ -208,10 +208,10 @@ checker, add a valid regular expression pattern to the `linkcheck_ignore` variab
 [This project uses GitHub Actions for CI/CD processes][github-actions]. The following
 GitHub Action workflows are enabled:
 
-| Name                      | Event trigger | Description                                                                                                              |
-| ------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `nox`                     | `push`        | Runs `nox` sessions across multiple Python versions (3.9+), and on Ubuntu and macOS for every `git push`.                |
-| `sphinx-build-and-deploy` | `released`    | Builds, and deploys `Sphinx` documentation to GitHub Pages when a release is published on GitHub. Excludes pre-releases. |
+| Name                      | Event trigger  | Description                                                                                                              |
+| ------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `nox`                     | `pull_request` | Runs `nox` sessions across multiple Python versions (3.9+), and on Ubuntu and macOS for every `git push`.                |
+| `sphinx-build-and-deploy` | `released`     | Builds, and deploys `Sphinx` documentation to GitHub Pages when a release is published on GitHub. Excludes pre-releases. |
 
 [Install `act` to your system to test GitHub Actions locally before pushing to
 GitHub][act]. Note `act` tests GitHub Actions using Ubuntu runners, so any macOS runs
