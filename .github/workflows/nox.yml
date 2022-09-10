@@ -20,7 +20,7 @@ jobs:
           - os: macos-latest
             python: "3.10"
             nox_session: "pre-commit"
-      fail-fast: false
+      fail-fast: true
     defaults:
       run:
         shell: bash
