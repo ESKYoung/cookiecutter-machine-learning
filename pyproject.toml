@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cookiecutter-machine-learning"
-version = "1.0.0"
+version = "1.0.1"
 description = "A cookiecutter template for machine learning projects in Python."
 license = "MIT"
 authors = ["Eric Young <ESKYoung@users.noreply.github.com>"]
