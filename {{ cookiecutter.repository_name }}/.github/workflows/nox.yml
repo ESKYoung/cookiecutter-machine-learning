@@ -1,6 +1,6 @@
 name: "Run `nox` sessions"
 
-on: [push]
+on: [pull_request]
 
 jobs:
   nox:
@@ -11,7 +11,16 @@ jobs:
         os: [ubuntu-latest, macos-latest]
         python: ["3.9", "3.10"]
         nox_session: ["docs", "pre-commit", "testing"]
-      fail-fast: false
+        exclude:
+          - os: macos-latest
+            python: "3.10"
+            nox_session: "docs"
+          - os: macos-latest
+            nox_session: "testing"
+          - os: macos-latest
+            python: "3.10"
+            nox_session: "pre-commit"
+      fail-fast: true
     defaults:
       run:
         shell: bash
