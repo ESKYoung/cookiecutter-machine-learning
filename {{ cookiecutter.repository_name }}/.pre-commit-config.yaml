@@ -49,7 +49,7 @@ repos:
         types: [jupyter]
         args:
           - --extra-keys
-          - "metadata.colab metadata.kernelspec cell.metadata.colab cell.metadata.executionInfo cell.metadata.id cell.metadata.outputId cell.metadata.application/vnd.databricks.v1+cell metadata.application/vnd.databricks.v1+notebook metadata.interpreter"
+          - "metadata.colab metadata.kernelspec cell.metadata.colab cell.metadata.executionInfo cell.metadata.id cell.metadata.outputId cell.metadata.application/vnd.databricks.v1+cell metadata.application/vnd.databricks.v1+notebook metadata.interpreter metadata.vscode"
       - id: nbqa-black
         name: nbqa-black — Python code formatting for notebooks (auto-fix)
         entry: poetry run nbqa black
