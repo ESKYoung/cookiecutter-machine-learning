@@ -6,7 +6,13 @@ repos:
         name: detect-secrets — secrets detection
         entry: poetry run detect-secrets-hook
         language: system
-        args: ["--baseline", ".secrets.baseline"]
+        args:
+          [
+            "--baseline",
+            ".secrets.baseline",
+            "--exclude-files",
+            "^.cruft.json$",
+          ]
 
       # Python code formatting, typing, linting, and vulnerability checks
       - id: black
