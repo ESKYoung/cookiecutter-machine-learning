@@ -39,7 +39,7 @@ Now, install the Poetry virtual environment, including all optional dependency g
 
 ```zsh
 cd /path/to/repository
-poetry install --with=ci-cd,docs,notebook,pre-commit,testing --sync
+poetry install --with=ci-cd,cookiecutter,docs,notebook,pre-commit,testing --sync
 ```
 
 Alternatively, run the following `make` command:
@@ -83,7 +83,7 @@ The following hooks are enabled for this project:
 | [`flake8-rst-docstrings`][flake8-rst-docstrings] | `flake8` plugin to validate docstrings in ReStructuredText.                                                                                                                                                                                        |
 | [`isort`][isort]                                 | Sort Python imports in a specified, and consistent order.                                                                                                                                                                                          |
 | [`mypy`][mypy]                                   | Static type checker to ensure functions/classes have type hints, and they are used correctly.                                                                                                                                                      |
-| [`safety`][safety]                               | Checks Python dependencies for known vulnerabilities.                                                                                                                                                                                              |
+| [`safety`][safety]                               | Checks Python dependencies for known vulnerabilities. For more information about any flagged vulnerabilities, run `poetry run safety check` in your terminal.                                                                                      |
 | [`nbstripout`][nbstripout]                       | Strips outputs and metadata from notebooks (Jupyter, Google Colab, Databricks) for security and to reduce data leakage.                                                                                                                            |
 | [`nbqa`][nbqa]                                   | Run formatters, linters, and other tools on notebooks. Currently set for `black`, `flake8`, `isort`, and `mypy`.                                                                                                                                   |
 | `end-of-file-fixer`                              | Ensure files end with a blank line.                                                                                                                                                                                                                |
