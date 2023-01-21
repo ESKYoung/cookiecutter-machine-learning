@@ -93,18 +93,6 @@ show_column_numbers = true
 show_error_codes = true
 show_error_context = true
 
-[tool.nbqa.addopts]
-black = [
-    "--config=./pyproject.toml",
-    '--force-exclude="^/\\{\\{ cookiecutter\\.repository_name \\}\\}/pyproject\\.toml$"'
-]
-
-[tool.nbqa.exclude]
-black = "^/\\{\\{ cookiecutter\\.repository_name \\}\\}/pyproject\\.toml$"
-flake8 = "^/\\{\\{ cookiecutter\\.repository_name \\}\\}/pyproject\\.toml$"
-isort = "^/\\{\\{ cookiecutter\\.repository_name \\}\\}/pyproject\\.toml$"
-mypy = "^/\\{\\{ cookiecutter\\.repository_name \\}\\}/pyproject\\.toml$"
-
 [tool.pytest.ini_options]
 addopts = ["-vv", "--doctest-modules", "--keep-baked-projects"]
 doctest_optionflags = "NORMALIZE_WHITESPACE"
