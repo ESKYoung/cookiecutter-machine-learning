@@ -26,7 +26,7 @@ requirements:
 
 - Git 2.36+ installed
 - Python 3.9+ installed
-- [Poetry 1.2 installed][poetry]
+- [Poetry 1.3 installed][poetry]
 - a local clone of this project
   ```zsh
   git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repository_name }}.git  # HTTPS
