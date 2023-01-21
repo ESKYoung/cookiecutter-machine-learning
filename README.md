@@ -78,4 +78,3 @@ guidelines][docs-contributing].
 [docs-website]: https://ESKYoung.github.io/cookiecutter-machine-learning
 [github-create-repo]: https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository
 [gitlab-create-repo]: https://docs.gitlab.com/ee/user/project/working_with_projects.html
-[poetry]: https://python-poetry.org
