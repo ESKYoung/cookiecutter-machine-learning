@@ -26,7 +26,7 @@ requirements:
 
 - Git 2.36+ installed
 - Python 3.9+ installed
-- [Poetry 1.2 installed][poetry]
+- [Poetry 1.3 installed][poetry]
 - a local clone of this project
   ```zsh
   git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repository_name }}.git  # HTTPS
@@ -238,7 +238,7 @@ will run GitHub Actions with the `release` event trigger.
 [flake8]: https://flake8.pycqa.org
 [flake8-bandit]: https://github.com/tylerwince/flake8-bandit
 [flake8-bugbear]: https://github.com/PyCQA/flake8-bugbear
-[flake8-docstrings]: https://gitlab.com/pycqa/flake8-docstrings
+[flake8-docstrings]: https://github.com/PyCQA/flake8-docstrings
 [flake8-rst-docstrings]: https://github.com/peterjc/flake8-rst-docstrings
 [github-actions]: https://docs.github.com/en/actions
 [govuk-content-writing]: https://www.gov.uk/guidance/content-design/writing-for-gov-uk
