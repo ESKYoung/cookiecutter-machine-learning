@@ -131,7 +131,6 @@ def build_example_project(nox_session: Session) -> None:
     # purposes. This is required, as the example project needs Git initialised, and it
     # cannot be inside an existing Git repository
     with TemporaryDirectory() as temporary_directory:
-
         example_project_repository = os.path.join(
             temporary_directory, "example-project"
         )
