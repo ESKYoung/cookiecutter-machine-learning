@@ -37,15 +37,15 @@ jobs:
 
       - name: Install dependencies for `docs` `nox` session
         if: ${{ matrix.nox_session == 'docs' }}
-        run: poetry install --with=ci-cd,docs --sync
+        run: poetry install --with=ci-cd,docs --sync --no-ansi
 
       - name: Install dependencies for `pre-commit` `nox` session
         if: ${{ matrix.nox_session == 'pre-commit' }}
-        run: poetry install --with=ci-cd,pre-commit,notebook,testing --sync
+        run: poetry install --with=ci-cd,pre-commit,notebook,testing --sync --no-ansi
 
       - name: Install dependencies for `testing` `nox` session
         if: ${{ matrix.nox_session == 'testing' }}
-        run: poetry install --with=ci-cd,testing --sync
+        run: poetry install --with=ci-cd,testing --sync --no-ansi
 
       - name: Run `nox` session `${{ matrix.nox_session }}`
         run: poetry run nox --force-python python --session ${{ matrix.nox_session }}

@@ -18,7 +18,7 @@ jobs:
           python-version: 3.9
 
       - name: Install dependencies
-        run: poetry install --with=docs --sync
+        run: poetry install --with=docs --sync --no-ansi
 
       - name: Build documentation
         run: poetry run sphinx-build -b html docs/ docs/_build
