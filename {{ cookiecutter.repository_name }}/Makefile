@@ -2,6 +2,9 @@
 	build_docs
 	contributor_requirements
 	coverage_report
+	run_github_actions
+	run_github_actions_pull_request
+	run_github_actions_release
 
 # Install contributor-required dependencies
 contributor_requirements:
@@ -17,3 +20,15 @@ build_docs: contributor_requirements
 coverage_report: contributor_requirements
 	pytest --cov --cov-report=html
 	open htmlcov/index.html
+
+# Run GitHub Actions with `pull_request` trigger locally — requires `act` installed
+run_github_actions_pull_request: contributor_requirements
+	act pull_request
+
+# Run GitHub Actions with `release` trigger locally — requires `act` installed
+run_github_actions_release: contributor_requirements
+	act release
+
+# Run GitHub Actions
+run_github_actions: run_github_actions_pull_request run_github_actions_release
+	@echo "GitHub Actions ran locally"
