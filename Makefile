@@ -27,14 +27,14 @@ coverage_report: contributor_requirements
 build_example: contributor_requirements
 	TEMPORARY_DIRECTORY="$$(mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir')" && \
 	cookiecutter . --no-input --output-dir $$TEMPORARY_DIRECTORY && \
-	echo "Example project stored at " $$TEMPORARY_DIRECTORY && \
+	@echo "Example project stored at " $$TEMPORARY_DIRECTORY && \
 	open $$TEMPORARY_DIRECTORY
 
 # Build an example project using user-defined settings, and open the folder
 build_example_with_input: contributor_requirements
 	TEMPORARY_DIRECTORY="$$(mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir')" && \
 	cookiecutter . --output-dir $$TEMPORARY_DIRECTORY && \
-	echo "Example project stored at " $$TEMPORARY_DIRECTORY && \
+	@echo "Example project stored at " $$TEMPORARY_DIRECTORY && \
 	open $$TEMPORARY_DIRECTORY
 
 # Run GitHub Actions with `pull_request` trigger locally — requires `act` installed
@@ -47,4 +47,4 @@ run_github_actions_release: contributor_requirements
 
 # Run GitHub Actions
 run_github_actions: run_github_actions_pull_request run_github_actions_release
-	echo "GitHub Actions ran locally"
+	@echo "GitHub Actions ran locally"
