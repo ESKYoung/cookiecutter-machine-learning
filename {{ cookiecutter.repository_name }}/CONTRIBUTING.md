@@ -236,9 +236,21 @@ For this project, a helper `make` command to run all GitHub Actions locally is p
 make run_github_actions
 ```
 
+## Updating your project to the latest `cookiecutter-machine-learning` cookiecutter
+
+This project's structure was built from a [cookiecutter template called
+`cookiecutter-machine-learning`][cookiecutter-machine-learning].
+
+You can use the `cruft` Python package to keep this project up-to-date with this
+cookiecutter template. First, [install the `cookiecutter` dependency group using
+Poetry](#contributing-requirements), and then [follow the `cruft` guidance on
+updating projects][cruft-update].
+
 [act]: https://github.com/nektos/act
 [bandit]: https://bandit.readthedocs.io
 [black]: https://black.readthedocs.io
+[cookiecutter-machine-learning]: https://github.com/ESKYoung/cookiecutter-machine-learning
+[cruft-update]: https://cruft.github.io/cruft/#updating-a-project
 [detect-secrets]: https://github.com/Yelp/detect-secrets
 [docs-code-of-conduct]: ./CODE_OF_CONDUCT.md
 [flake8]: https://flake8.pycqa.org

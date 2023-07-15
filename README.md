@@ -49,7 +49,7 @@ To get started, your system should meet the following requirements:
 
 - Git 2.36+ installed
 - Python 3.9+ installed
-- [cruft 2.11.0+ installed][cruft-installation]; for macOS users, this is also
+- [cruft 2.15.0+ installed][cruft-installation]; for macOS users, this is also
   available from Homebrew
   ```zsh
   brew install cruft
