@@ -22,7 +22,7 @@ Unless stated otherwise, the codebase is released under the MIT License.
 ## Documentation
 
 The [documentation for this project can be found at
-`https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.repository_name }}`][docs-website].
+`https://{{ cookiecutter.remote_username }}.github.io/{{ cookiecutter.repository_name }}`][docs-website].
 
 ## Contributing
 
@@ -32,5 +32,5 @@ guidelines][docs-contributing].
 [docs-contributing]: ./CONTRIBUTING.md
 
 <!-- prettier-ignore-start -->
-[docs-website]: https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.repository_name }}
+[docs-website]: https://{{ cookiecutter.remote_username }}.github.io/{{ cookiecutter.repository_name }}
 <!-- prettier-ignore-end -->

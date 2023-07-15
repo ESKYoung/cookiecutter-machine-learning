@@ -29,8 +29,8 @@ requirements:
 - [Poetry 1.5 installed][poetry]
 - a local clone of this project
   ```zsh
-  git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repository_name }}.git  # HTTPS
-  git clone git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.repository_name }}.git  # SSH
+  git clone https://github.com/{{ cookiecutter.remote_username }}/{{ cookiecutter.repository_name }}.git  # HTTPS
+  git clone git@github.com:{{ cookiecutter.remote_username }}/{{ cookiecutter.repository_name }}.git  # SSH
   ```
 - [pre-commit hooks installed](#pre-commit-hooks)
 - [`act` installed to test GitHub Actions locally](#continuous-integrationcontinuous-deployment-cicd)
