@@ -39,7 +39,9 @@ git commit
 
 Finally, [create an empty GitHub repository without any optional
 files][github-create-repo], or [create a blank project on GitLab without any optional
-files][gitlab-create-repo] and follow the instructions to push your first commit.
+files][gitlab-create-repo] and follow the instructions to push your first commit. Note
+that CI/CD workflows are built with GitHub Actions; GitLab CI/CD is not currently
+supported.
 
 ### Requirements
 
