@@ -55,6 +55,7 @@ mypy = "^1.4.1"
 pre-commit = "^3.3.3"
 pre-commit-hooks = "^4.4.0"
 safety = "^2.3.5"
+types-python-slugify = "^8.0.0.2"
 
 [tool.poetry.group.testing]
 optional = true
