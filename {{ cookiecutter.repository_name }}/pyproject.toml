@@ -4,6 +4,10 @@ version = "{{ cookiecutter.release }}"
 description = "{{ cookiecutter.description }}"
 {% if cookiecutter.license == "MIT" -%}
 license = "MIT"
+{% elif cookiecutter.license == "GNU GPL" -%}
+license = "GPL-3.0-or-later"
+{% else -%}
+license = "Proprietary"
 {% endif -%}
 authors = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
 maintainers = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]

@@ -17,6 +17,11 @@ To get started, your system should meet the following requirements:
 
 Unless stated otherwise, the codebase is released under the MIT License.
 
+{% elif cookiecutter.license == "GNU GPL" %}## Licence
+
+Unless stated otherwise, the codebase is released under the GNU General Public License
+v3.0 or later.
+
 {% endif -%}
 
 ## Documentation

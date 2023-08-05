@@ -15,7 +15,7 @@
   "project_name": "Project name",
   "repository_name": "{{ cookiecutter.project_name | lower | slugify }}",
   "package_name": "{{ cookiecutter.repository_name | lower | slugify(separator='_') }}",
-  "license": ["MIT", "None"],
+  "license": ["MIT", "GNU GPL", "None"],
   "release": "0.1.0",
   "description": "Description",
 
@@ -28,8 +28,9 @@
     "package_name": "Enter the name of the Python package",
     "license": {
       "__prompt__": "Select a license for this project",
-      "MIT": "MIT license",
-      "None": "No license"
+      "MIT": "MIT License",
+      "GNU GPL": "GNU General Public License v3.0 or later",
+      "None": "Proprietary software"
     },
     "release": "Enter the release version of this project",
     "description": "Add a description of this project"

@@ -9,7 +9,8 @@ from slugify import slugify
 
 
 @pytest.mark.parametrize(
-    "extra_context", [None, {"license": "MIT"}, {"license": "None"}]
+    "extra_context",
+    [None, {"license": "MIT"}, {"license": "GNU GPL"}, {"license": "None"}],
 )
 class TestFolderStructure:
     """Test the folder structure is created correctly by `cookiecutter`."""
@@ -94,9 +95,17 @@ class TestFolderStructure:
         _create_project: Tuple[OrderedDict[Any, str], Result],
         extra_context: Optional[Dict[str, str]],
     ) -> None:
-        """Test a MIT license file is created, if requested."""
+        """Test a license file is created, if requested."""
         test_expected_context, test_output = _create_project
-        if test_expected_context["license"] == "MIT":
-            assert test_output.project_path.joinpath("LICENSE").is_file()
+        test_expected_filepath = test_output.project_path.joinpath("LICENSE")
+        if test_expected_context["license"] == "None":
+            assert not test_expected_filepath.exists()
         else:
-            assert not test_output.project_path.joinpath("LICENSE").exists()
+            assert test_expected_filepath.is_file()
+            with open(test_expected_filepath, "r") as f:
+                if test_expected_context["license"] == "MIT":
+                    assert f.readline() == "MIT License\n"
+                elif test_expected_context["license"] == "GNU GPL":
+                    assert f.readline().lstrip() == "GNU GENERAL PUBLIC LICENSE\n"
+                else:
+                    pytest.xfail("Test does not recognise license choice")
