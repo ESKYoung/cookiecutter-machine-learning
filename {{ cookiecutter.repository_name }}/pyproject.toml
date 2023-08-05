@@ -33,7 +33,7 @@ nox-poetry = "^1.0.2"
 optional = true
 
 [tool.poetry.group.cookiecutter.dependencies]
-cookiecutter = "^2.2.3"
+cookiecutter = "^2.3.0"
 cruft = "^2.15.0"
 
 [tool.poetry.group.docs]
