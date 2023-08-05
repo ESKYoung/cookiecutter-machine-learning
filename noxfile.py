@@ -116,7 +116,7 @@ def build_and_test_sphinx_documentation(nox_session: Session, builder: str) -> N
 
     """
     nox_session.install(".")
-    docs_build_directory = os.path.join(nox_session.env["TMPDIR"], "docs/_build")
+    docs_build_directory = os.path.join(nox_session.create_tmp(), "docs/_build")
     args = nox_session.posargs or ["docs", docs_build_directory]
     nox_session.run("sphinx-build", "-b", builder, *args, external=True)
 
