@@ -15,7 +15,6 @@ release = importlib.metadata.version("cookiecutter-machine-learning")
 
 # Sphinx extensions
 extensions = [
-    "myst_parser",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.autosummary",
@@ -73,22 +72,4 @@ autosummary_generate = True
 linkcheck_ignore = [
     r"^https://ESKYoung.github.io/cookiecutter-machine-learning$",
     r"^https://ESKYoung.github.io/cookiecutter-machine-learning/",
-]
-
-# `myst_parser` configurations
-myst_heading_anchors = 6
-myst_enable_extensions = [
-    "amsmath",
-    "colon_fence",
-    "deflist",
-    "dollarmath",
-    "fieldlist",
-    "html_admonition",
-    "html_image",
-    "linkify",
-    "replacements",
-    "smartquotes",
-    "strikethrough",
-    "substitution",
-    "tasklist",
 ]
