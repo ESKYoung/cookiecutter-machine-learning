@@ -21,7 +21,7 @@ exclude = []
 [tool.poetry.dependencies]
 python = "^3.9"
 cookiecutter = "^2.3.0"
-cruft = "^2.15.0"
+cruft = {extras = ["pyproject"], version = "^2.15.0"}
 
 [tool.poetry.group.ci-cd]
 optional = true

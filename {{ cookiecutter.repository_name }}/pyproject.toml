@@ -34,7 +34,7 @@ optional = true
 
 [tool.poetry.group.cookiecutter.dependencies]
 cookiecutter = "^2.3.0"
-cruft = "^2.15.0"
+cruft = {extras = ["pyproject"], version = "^2.15.0"}
 
 [tool.poetry.group.docs]
 optional = true
