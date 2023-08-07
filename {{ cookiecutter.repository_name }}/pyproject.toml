@@ -11,7 +11,7 @@ license = "Proprietary"
 {% endif -%}
 authors = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
 maintainers = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
-readme = "README.md"
+readme = "README.rst"
 homepage = "https://{{ cookiecutter.remote_username }}.github.io/{{ cookiecutter.repository_name }}"
 repository = "https://github.com/{{ cookiecutter.remote_username }}/{{ cookiecutter.repository_name }}"
 documentation = "https://{{ cookiecutter.remote_username }}.github.io/{{ cookiecutter.repository_name }}"
