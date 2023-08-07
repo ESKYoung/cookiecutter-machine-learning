@@ -15,7 +15,6 @@ release = importlib.metadata.version("{{ cookiecutter.package_name }}")
 
 # Sphinx extensions
 extensions = [
-    "myst_parser",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.autosummary",
@@ -52,11 +51,15 @@ html_theme_options = {
         {
             "name": "GitHub",
             "url": "https://www.github.com/{{ cookiecutter.remote_username }}/{{ cookiecutter.repository_name }}",  # noqa: B950
-            "icon": "fab fa-github-square",
+            "icon": "fa-brands fa-github-square",
         },
     ],
     "navigation_depth": 2,
     "use_edit_page_button": True,
+    "logo": {
+        "text": "{{ cookiecutter.repository_name }}",
+        "alt_text": "{{ cookiecutter.repository_name }}",
+    },
 }
 
 # `sphinx.ext.autosectionlabel` configurations
@@ -69,22 +72,4 @@ autosummary_generate = True
 linkcheck_ignore = [
     r"^https://{{ cookiecutter.remote_username }}.github.io/{{ cookiecutter.repository_name }}$",  # noqa: B950
     r"^https://{{ cookiecutter.remote_username }}.github.io/{{ cookiecutter.repository_name }}/",  # noqa: B950
-]
-
-# `myst_parser` configurations
-myst_heading_anchors = 6
-myst_enable_extensions = [
-    "amsmath",
-    "colon_fence",
-    "deflist",
-    "dollarmath",
-    "fieldlist",
-    "html_admonition",
-    "html_image",
-    "linkify",
-    "replacements",
-    "smartquotes",
-    "strikethrough",
-    "substitution",
-    "tasklist",
 ]
