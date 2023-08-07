@@ -52,11 +52,15 @@ html_theme_options = {
         {
             "name": "GitHub",
             "url": "https://www.github.com/ESKYoung/cookiecutter-machine-learning",
-            "icon": "fab fa-github-square",
+            "icon": "fa-brands fa-github-square",
         },
     ],
     "navigation_depth": 2,
     "use_edit_page_button": True,
+    "logo": {
+        "text": "cookiecutter-machine-learning",
+        "alt_text": "cookiecutter-machine-learning",
+    },
 }
 
 # `sphinx.ext.autosectionlabel` configurations
