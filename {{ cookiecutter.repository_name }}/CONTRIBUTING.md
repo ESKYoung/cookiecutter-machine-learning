@@ -122,7 +122,7 @@ Alternatively, run the following `make` command:
 
 ```zsh
 cd /path/to/repository
-make coverage_report
+make coverage
 ```
 
 [We use `nox` to handle testing on multiple Python versions][nox] to ensure
@@ -174,7 +174,7 @@ Alternatively, run the following `make` command:
 
 ```zsh
 cd /path/to/repository
-make build_docs
+make docs
 ```
 
 ### Writing documentation
@@ -233,7 +233,7 @@ will run GitHub Actions with the `release` event trigger.
 For this project, a helper `make` command to run all GitHub Actions locally is provided:
 
 ```zsh
-make run_github_actions
+make cicd
 ```
 
 ## Updating your project to the latest `cookiecutter-machine-learning` cookiecutter
