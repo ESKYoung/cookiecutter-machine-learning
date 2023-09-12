@@ -107,5 +107,3 @@ class TestFolderStructure:
                     assert f.readline() == "MIT License\n"
                 elif test_expected_context["license"] == "GNU GPL":
                     assert f.readline().lstrip() == "GNU GENERAL PUBLIC LICENSE\n"
-                else:
-                    pytest.xfail("Test does not recognise license choice")
