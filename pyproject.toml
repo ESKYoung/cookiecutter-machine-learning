@@ -76,6 +76,9 @@ build-backend = "poetry.core.masonry.api"
 config = "./pyproject.toml"
 force-exclude = "^/\\{\\{ cookiecutter\\.repository_name \\}\\}/pyproject\\.toml$"
 
+[tool.coverage.run]
+omit = ["{{ cookiecutter.repository_name }}/*"]
+
 [tool.coverage.paths]
 source = ["hooks", "src"]
 
