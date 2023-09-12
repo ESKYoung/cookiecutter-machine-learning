@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Contributing guidelines &#8212; cookiecutter-machine-learning 1.1.0 documentation</title>
+    <title>Contributing guidelines &#8212; cookiecutter-machine-learning 1.2.1 documentation</title>
   
   
   
@@ -35,9 +35,9 @@
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=52b0a0d4"></script>
+    <script src="_static/documentation_options.js?v=2e6055c8"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'CONTRIBUTING';</script>
@@ -106,7 +106,7 @@
   
   
   
-    <p class="title logo__title">cookiecutter-machine-learning 1.1.0 documentation</p>
+    <p class="title logo__title">cookiecutter-machine-learning 1.2.1 documentation</p>
   
 </a></div>
     
@@ -346,15 +346,15 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="contributing-guidelines">
-<h1>Contributing guidelines<a class="headerlink" href="#contributing-guidelines" title="Permalink to this heading">#</a></h1>
+<h1>Contributing guidelines<a class="headerlink" href="#contributing-guidelines" title="Link to this heading">#</a></h1>
 <p>We love contributions! If you want to help build and improve our project, please read
 the following guidelines before submitting your contributions.</p>
 <section id="code-of-conduct">
-<h2>Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Permalink to this heading">#</a></h2>
+<h2>Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Link to this heading">#</a></h2>
 <p><a class="reference internal" href="CODE_OF_CONDUCT.html"><span class="std std-doc">Please read our Code of Conduct before contributing</span></a>.</p>
 </section>
 <section id="conventions">
-<h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this heading">#</a></h2>
+<h2>Conventions<a class="headerlink" href="#conventions" title="Link to this heading">#</a></h2>
 <p>All code must be version-controlled using Git, and regularly pushed to GitHub. Git
 branches are cheap, and commits can be squashed, or fixed-up later on. As such, please
 push code, including work-in-progress code, at regular intervals.</p>
@@ -365,7 +365,7 @@ if your code is being used by other contributors. For example, do not rebase new
 changes into a branch currently in review.</p>
 </section>
 <section id="contributing-requirements">
-<h2>Contributing requirements<a class="headerlink" href="#contributing-requirements" title="Permalink to this heading">#</a></h2>
+<h2>Contributing requirements<a class="headerlink" href="#contributing-requirements" title="Link to this heading">#</a></h2>
 <p>To contribute to this project, please make sure your system meets the following
 requirements:</p>
 <ul>
@@ -393,7 +393,7 @@ make<span class="w"> </span>contributor_requirements
 </div>
 </section>
 <section id="pre-commit-hooks">
-<h2>Pre-commit hooks<a class="headerlink" href="#pre-commit-hooks" title="Permalink to this heading">#</a></h2>
+<h2>Pre-commit hooks<a class="headerlink" href="#pre-commit-hooks" title="Link to this heading">#</a></h2>
 <p>Pre-commit hooks to ensure consistency, and security in our code before it enters
 version control.</p>
 <p>Run the following commands once, to always install pre-commit hooks for any project
@@ -471,7 +471,7 @@ the <code class="docutils literal notranslate"><span class="pre">pre-commit</spa
 further information.</p>
 </section>
 <section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h2>
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://docs.pytest.org/en/7.1.x">Tests are written using <code class="docutils literal notranslate"><span class="pre">pytest</span></code></a>, and can be found in the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder.
 These tests check code written in the <code class="docutils literal notranslate"><span class="pre">hooks</span></code>, and <code class="docutils literal notranslate"><span class="pre">src</span></code> folder. To run the tests, open
 your terminal, and run the following commands:</p>
@@ -535,7 +535,7 @@ parallel. Sessions that do not require any Poetry dependency groups are named wi
 <code class="docutils literal notranslate"><span class="pre">_</span></code> prefix. See the configuration script at <code class="docutils literal notranslate"><span class="pre">.github/workflows.yml</span></code> for further details.</p>
 </section>
 <section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">#</a></h2>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h2>
 <p>Documentation in this project is written in Markdown, and <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest">parsed by MyST-Parser and to
 build a searchable HTML documentation website</a>.</p>
 <p>To build, and view the <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code> documentation in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder locally, run the
@@ -551,7 +551,7 @@ make<span class="w"> </span>docs
 </pre></div>
 </div>
 <section id="writing-documentation">
-<h3>Writing documentation<a class="headerlink" href="#writing-documentation" title="Permalink to this heading">#</a></h3>
+<h3>Writing documentation<a class="headerlink" href="#writing-documentation" title="Link to this heading">#</a></h3>
 <p>Documentation should be written in clear, and plain English. Although contentious, we
 try to wrap lines at 88 characters; this can allow for easier review of raw Markdown,
 although arguably Git diffs can become more complicated.</p>
@@ -574,7 +574,7 @@ checker, add a valid regular expression pattern to the <code class="docutils lit
 </section>
 </section>
 <section id="continuous-integration-continuous-deployment-ci-cd">
-<h2>Continuous integration/continuous deployment (CI/CD)<a class="headerlink" href="#continuous-integration-continuous-deployment-ci-cd" title="Permalink to this heading">#</a></h2>
+<h2>Continuous integration/continuous deployment (CI/CD)<a class="headerlink" href="#continuous-integration-continuous-deployment-ci-cd" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://docs.github.com/en/actions">This project uses GitHub Actions for CI/CD processes</a>. The following
 GitHub Action workflows are enabled:</p>
 <table class="table">
@@ -613,7 +613,7 @@ with additional arguments, for example:</p>
 </div>
 </section>
 <section id="modifying-this-cookiecutter-based-project">
-<h2>Modifying this <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code>-based project<a class="headerlink" href="#modifying-this-cookiecutter-based-project" title="Permalink to this heading">#</a></h2>
+<h2>Modifying this <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code>-based project<a class="headerlink" href="#modifying-this-cookiecutter-based-project" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://github.com/cookiecutter/cookiecutter">This project uses the <code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code> Python package to build a template for machine
 learning projects</a>. Additionally, <a class="reference external" href="https://cruft.github.io/cruft">we use the <code class="docutils literal notranslate"><span class="pre">cruft</span></code> Python package to
 help update projects created from this template</a>.</p>
@@ -764,7 +764,7 @@ must add the new hook to both <code class="docutils literal notranslate"><span c
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.5.
     <br/>
   </p>
 </div>
