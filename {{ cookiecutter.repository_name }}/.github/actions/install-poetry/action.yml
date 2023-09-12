@@ -24,7 +24,7 @@ runs:
       shell: bash
 
     - name: Install Poetry
-      run: curl -sSL https://install.python-poetry.org | python3 -
+      run: curl -sSL https://install.python-poetry.org | python3 - --version 1.5.1
       shell: bash
 
     - name: Update PATH to run `poetry`
