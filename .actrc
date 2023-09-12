@@ -1,0 +1,2 @@
+# Set the timezone of containers used by `act`. Temporary fix for https://github.com/nektos/act/issues/1853
+--env TZ=UTC

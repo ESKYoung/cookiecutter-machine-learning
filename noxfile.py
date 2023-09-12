@@ -11,13 +11,13 @@ from nox_poetry import Session, session
 PYTHON_VERSIONS = ["3.9", "3.10"]
 
 # Set minimum required version of `nox`
-nox.needs_version = ">=2022.8.7"
+nox.needs_version = ">=2023.4.22"
 
 # Set `nox` to stop the session on the first failure
 nox.options.stop_on_first_error = True
 
 
-def install_group_dependencies(
+def install_example_group_dependencies(
     nox_session: Session,
     groups: Optional[Iterable[str]] = None,
 ) -> None:
@@ -50,7 +50,14 @@ def install_group_dependencies(
         "--with={}".format(",".join({"ci-cd", *groups}) if groups else "ci-cd"),
         external=True,
     )
-    nox_session.install("-r", str(temporary_requirements))
+    nox_session.run_always(
+        "pip",
+        "install",
+        "-r",
+        temporary_requirements,
+        "--quiet",
+        external=True,
+    )
     nox_session.poetry.installroot()
 
 
@@ -68,7 +75,7 @@ def run_pre_commit_hooks_on_all_files(nox_session: Session) -> None:
         None.
 
     """
-    install_group_dependencies(nox_session=nox_session, groups=["pre-commit"])
+    nox_session.install(".")
     args = nox_session.posargs or ["run", "--all-files", "--show-diff-on-failure"]
     nox_session.run("pre-commit", *args, external=True)
 
@@ -87,7 +94,7 @@ def run_pytest_suite(nox_session: Session) -> None:
         None.
 
     """
-    install_group_dependencies(nox_session=nox_session, groups=["testing"])
+    nox_session.install(".")
     args = nox_session.posargs or []
     nox_session.run("pytest", *args, success_codes=[0, 5], external=True)
 
@@ -108,8 +115,8 @@ def build_and_test_sphinx_documentation(nox_session: Session, builder: str) -> N
         None.
 
     """
-    install_group_dependencies(nox_session=nox_session, groups=["docs"])
-    docs_build_directory = os.path.join(nox_session.env["TMPDIR"], "docs/_build")
+    nox_session.install(".")
+    docs_build_directory = os.path.join(nox_session.create_tmp(), "docs/_build")
     args = nox_session.posargs or ["docs", docs_build_directory]
     nox_session.run("sphinx-build", "-b", builder, *args, external=True)
 
@@ -125,13 +132,12 @@ def build_example_project(nox_session: Session) -> None:
         None.
 
     """
-    install_group_dependencies(nox_session=nox_session)
+    nox_session.install(".")
 
     # Create a temporary directory, where an example project will be build for testing
     # purposes. This is required, as the example project needs Git initialised, and it
     # cannot be inside an existing Git repository
     with TemporaryDirectory() as temporary_directory:
-
         example_project_repository = os.path.join(
             temporary_directory, "example-project"
         )
@@ -153,8 +159,7 @@ def build_example_project(nox_session: Session) -> None:
         # Change the current working directory for the `nox` session
         nox_session.chdir(example_project_repository)
 
-        # Remove any Python packages in the current `nox` session, and install the
-        # example project main dependencies
+        # Remove any Python packages in the current `nox` session
         with open(example_project_requirements, "w") as f:
             f.write(str(nox_session.run("pip", "freeze", silent=True, external=True)))
         nox_session.run(
@@ -163,8 +168,16 @@ def build_example_project(nox_session: Session) -> None:
             "--yes",
             "--quiet",
             f"--requirement={example_project_requirements}",
+            external=True,
         )
-        install_group_dependencies(nox_session=nox_session)
+
+        # Install all the example project dependencies; this is necessary, otherwise
+        # dependencies will not be installed correctly, and nested `nox` sessions will
+        # fail
+        install_example_group_dependencies(
+            nox_session=nox_session,
+            groups=["cookiecutter", "docs", "notebook", "pre-commit", "testing"],
+        )
 
         # Initialise Git in the example project, and stage all changes
         nox_session.run("git", "init", "--quiet", external=True)

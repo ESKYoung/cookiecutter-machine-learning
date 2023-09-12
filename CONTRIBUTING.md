@@ -26,7 +26,7 @@ requirements:
 
 - Git 2.36+ installed
 - Python 3.9+ installed
-- [Poetry 1.3 installed][poetry]
+- [Poetry 1.5 installed][poetry]
 - a local clone of this project
   ```zsh
   git clone https://github.com/ESKYoung/cookiecutter-machine-learning.git  # HTTPS
@@ -120,7 +120,7 @@ Alternatively, run the following `make` command:
 
 ```zsh
 cd /path/to/repository
-make coverage_report
+make coverage
 ```
 
 [We use `nox` to handle testing on multiple Python versions][nox] to ensure
@@ -174,7 +174,7 @@ Alternatively, run the following `make` command:
 
 ```zsh
 cd /path/to/repository
-make build_docs
+make docs
 ```
 
 ### Writing documentation
@@ -211,7 +211,7 @@ GitHub Action workflows are enabled:
 | Name                      | Event trigger  | Description                                                                                                              |
 | ------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `nox`                     | `pull_request` | Runs `nox` sessions across multiple Python versions (3.9+), and on Ubuntu and macOS for every `git push`.                |
-| `sphinx-build-and-deploy` | `released`     | Builds, and deploys `Sphinx` documentation to GitHub Pages when a release is published on GitHub. Excludes pre-releases. |
+| `sphinx-build-and-deploy` | `release`      | Builds, and deploys `Sphinx` documentation to GitHub Pages when a release is published on GitHub. Excludes pre-releases. |
 
 [Install `act` to your system to test GitHub Actions locally before pushing to
 GitHub][act]. Note `act` tests GitHub Actions using Ubuntu runners, so any macOS runs
@@ -229,6 +229,12 @@ act release
 ```
 
 will run GitHub Actions with the `release` event trigger.
+
+For this project, a helper `make` command to run all GitHub Actions locally is provided:
+
+```zsh
+make cicd
+```
 
 ## Modifying this `cookiecutter`-based project
 

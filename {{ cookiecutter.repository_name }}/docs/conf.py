@@ -40,7 +40,7 @@ html_static_path = ["_static"]
 # HTML context information for the theme
 html_context = {
     "github_repo": "{{ cookiecutter.repository_name }}",
-    "github_user": "{{ cookiecutter.github_username }}",
+    "github_user": "{{ cookiecutter.remote_username }}",
     "github_version": "main",
     "doc_path": "docs",
 }
@@ -51,7 +51,7 @@ html_theme_options = {
     "icon_links": [
         {
             "name": "GitHub",
-            "url": "https://www.github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repository_name }}",  # noqa: B950
+            "url": "https://www.github.com/{{ cookiecutter.remote_username }}/{{ cookiecutter.repository_name }}",  # noqa: B950
             "icon": "fab fa-github-square",
         },
     ],
@@ -67,8 +67,8 @@ autosummary_generate = True
 
 # `sphinx.builders.linkcheck` configurations
 linkcheck_ignore = [
-    r"^https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.repository_name }}$",  # noqa: B950
-    r"^https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.repository_name }}/",  # noqa: B950
+    r"^https://{{ cookiecutter.remote_username }}.github.io/{{ cookiecutter.repository_name }}$",  # noqa: B950
+    r"^https://{{ cookiecutter.remote_username }}.github.io/{{ cookiecutter.repository_name }}/",  # noqa: B950
 ]
 
 # `myst_parser` configurations

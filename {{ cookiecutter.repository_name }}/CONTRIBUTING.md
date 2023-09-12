@@ -26,11 +26,11 @@ requirements:
 
 - Git 2.36+ installed
 - Python 3.9+ installed
-- [Poetry 1.3 installed][poetry]
+- [Poetry 1.5 installed][poetry]
 - a local clone of this project
   ```zsh
-  git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repository_name }}.git  # HTTPS
-  git clone git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.repository_name }}.git  # SSH
+  git clone https://github.com/{{ cookiecutter.remote_username }}/{{ cookiecutter.repository_name }}.git  # HTTPS
+  git clone git@github.com:{{ cookiecutter.remote_username }}/{{ cookiecutter.repository_name }}.git  # SSH
   ```
 - [pre-commit hooks installed](#pre-commit-hooks)
 - [`act` installed to test GitHub Actions locally](#continuous-integrationcontinuous-deployment-cicd)
@@ -122,7 +122,7 @@ Alternatively, run the following `make` command:
 
 ```zsh
 cd /path/to/repository
-make coverage_report
+make coverage
 ```
 
 [We use `nox` to handle testing on multiple Python versions][nox] to ensure
@@ -174,7 +174,7 @@ Alternatively, run the following `make` command:
 
 ```zsh
 cd /path/to/repository
-make build_docs
+make docs
 ```
 
 ### Writing documentation
@@ -211,7 +211,7 @@ GitHub Action workflows are enabled:
 | Name                      | Event trigger  | Description                                                                                                              |
 | ------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `nox`                     | `pull_request` | Runs `nox` sessions across multiple Python versions (3.9+), and on Ubuntu and macOS for every `git push`.                |
-| `sphinx-build-and-deploy` | `released`     | Builds, and deploys `Sphinx` documentation to GitHub Pages when a release is published on GitHub. Excludes pre-releases. |
+| `sphinx-build-and-deploy` | `release`      | Builds, and deploys `Sphinx` documentation to GitHub Pages when a release is published on GitHub. Excludes pre-releases. |
 
 [Install `act` to your system to test GitHub Actions locally before pushing to
 GitHub][act]. Note `act` tests GitHub Actions using Ubuntu runners, so any macOS runs
@@ -230,9 +230,27 @@ act release
 
 will run GitHub Actions with the `release` event trigger.
 
+For this project, a helper `make` command to run all GitHub Actions locally is provided:
+
+```zsh
+make cicd
+```
+
+## Updating your project to the latest `cookiecutter-machine-learning` cookiecutter
+
+This project's structure was built from a [cookiecutter template called
+`cookiecutter-machine-learning`][cookiecutter-machine-learning].
+
+You can use the `cruft` Python package to keep this project up-to-date with this
+cookiecutter template. First, [install the `cookiecutter` dependency group using
+Poetry](#contributing-requirements), and then [follow the `cruft` guidance on
+updating projects][cruft-update].
+
 [act]: https://github.com/nektos/act
 [bandit]: https://bandit.readthedocs.io
 [black]: https://black.readthedocs.io
+[cookiecutter-machine-learning]: https://github.com/ESKYoung/cookiecutter-machine-learning
+[cruft-update]: https://cruft.github.io/cruft/#updating-a-project
 [detect-secrets]: https://github.com/Yelp/detect-secrets
 [docs-code-of-conduct]: ./CODE_OF_CONDUCT.md
 [flake8]: https://flake8.pycqa.org

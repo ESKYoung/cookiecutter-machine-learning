@@ -39,7 +39,9 @@ git commit
 
 Finally, [create an empty GitHub repository without any optional
 files][github-create-repo], or [create a blank project on GitLab without any optional
-files][gitlab-create-repo] and follow the instructions to push your first commit.
+files][gitlab-create-repo] and follow the instructions to push your first commit. Note
+that CI/CD workflows are built with GitHub Actions; GitLab CI/CD is not currently
+supported.
 
 ### Requirements
 
@@ -47,7 +49,7 @@ To get started, your system should meet the following requirements:
 
 - Git 2.36+ installed
 - Python 3.9+ installed
-- [cruft 2.11.0+ installed][cruft-installation]; for macOS users, this is also
+- [cruft 2.15.0+ installed][cruft-installation]; for macOS users, this is also
   available from Homebrew
   ```zsh
   brew install cruft
@@ -78,4 +80,3 @@ guidelines][docs-contributing].
 [docs-website]: https://ESKYoung.github.io/cookiecutter-machine-learning
 [github-create-repo]: https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository
 [gitlab-create-repo]: https://docs.gitlab.com/ee/user/project/working_with_projects.html
-[poetry]: https://python-poetry.org
