@@ -77,4 +77,4 @@ repos:
     hooks:
       - id: prettier
         name: prettier — code formatting for various languages (auto-fix)
-        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/\\{% if cookiecutter\\.license == \"MIT\" %\\}LICENSE\\{% endif %\\}$"
+        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/\\{% if cookiecutter\\.license == \"[A-Z ]+\" %\\}LICENSE\\{% endif %\\}$"
