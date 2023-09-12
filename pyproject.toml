@@ -5,7 +5,7 @@ description = "A cookiecutter template for machine learning projects in Python."
 license = "MIT"
 authors = ["Eric Young <ESKYoung@users.noreply.github.com>"]
 maintainers = ["Eric Young <ESKYoung@users.noreply.github.com>"]
-readme = "README.md"
+readme = "README.rst"
 homepage = "https://ESKYoung.github.io/cookiecutter-machine-learning"
 repository = "https://github.com/ESKYoung/cookiecutter-machine-learning"
 documentation = "https://ESKYoung.github.io/cookiecutter-machine-learning"
@@ -34,7 +34,6 @@ nox-poetry = "^1.0.3"
 optional = true
 
 [tool.poetry.group.docs.dependencies]
-myst-parser = {extras = ["linkify"], version = "^2.0.0"}
 pydata-sphinx-theme = "^0.13.3"
 Sphinx = "^7.0.1"
 sphinx-copybutton = "^0.5.2"
