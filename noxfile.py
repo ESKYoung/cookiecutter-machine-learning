@@ -85,7 +85,7 @@ def run_pre_commit_hooks_on_all_files(nox_session: Session) -> None:
     python=PYTHON_VERSIONS,
 )
 def run_pytest_suite(nox_session: Session) -> None:
-    """Check all tests pass.
+    """Check all tests pass, and check for code coverage.
 
     Args:
         nox_session (Session): a ``nox_poetry.Session`` object.
@@ -95,7 +95,7 @@ def run_pytest_suite(nox_session: Session) -> None:
 
     """
     nox_session.install(".")
-    args = nox_session.posargs or []
+    args = nox_session.posargs or ["--cov"]
     nox_session.run("pytest", *args, success_codes=[0, 5], external=True)
 
 
