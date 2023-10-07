@@ -24,7 +24,7 @@ include = []
 exclude = []
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<3.13"
 
 [tool.poetry.group.ci-cd]
 optional = true
