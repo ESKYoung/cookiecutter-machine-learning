@@ -4,8 +4,7 @@
 
 ## Checklists
 
-I/we (contributor) confirm that the code, and analyses in this Pull Request
-(developments) meets the following requirements:
+I/we (contributor) confirm that the code, and analyses in this Pull Request (developments) meets the following requirements:
 
 - [ ] code runs
 - [ ] developments are ethical, and secure
