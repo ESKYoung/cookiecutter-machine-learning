@@ -134,7 +134,7 @@ def build_example_project(nox_session: Session) -> None:
     """
     nox_session.install(".")
 
-    # Create a temporary directory, where an example project will be build for testing
+    # Create a temporary directory, where an example project will be built for testing
     # purposes. This is required, as the example project needs Git initialised, and it
     # cannot be inside an existing Git repository
     with TemporaryDirectory() as temporary_directory:
