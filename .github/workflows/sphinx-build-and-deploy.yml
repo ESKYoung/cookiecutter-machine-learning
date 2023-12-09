@@ -15,7 +15,7 @@ jobs:
       - name: Install Poetry
         uses: ./.github/actions/install-poetry
         with:
-          python-version: 3.9
+          python-version: 3.10
 
       - name: Install dependencies
         run: poetry install --with=docs --sync --no-ansi
