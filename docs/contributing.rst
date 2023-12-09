@@ -36,7 +36,7 @@ requirements:
 
 * Git 2.36+ installed
 * Python 3.10+ installed
-* `Poetry 1.5 installed <https://python-poetry.org>`_
+* `Poetry 1.7 installed <https://python-poetry.org>`_
 * a local clone of this project::
 
     git clone https://github.com/ESKYoung/cookiecutter-machine-learning.git  # HTTPS
