@@ -35,8 +35,8 @@ To contribute to this project, please make sure your system meets the following
 requirements:
 
 * Git 2.36+ installed
-* Python 3.9+ installed
-* `Poetry 1.5 installed <https://python-poetry.org>`_
+* Python 3.10+ installed
+* `Poetry 1.7 installed <https://python-poetry.org>`_
 * a local clone of this project::
 
     git clone https://github.com/ESKYoung/cookiecutter-machine-learning.git  # HTTPS
@@ -228,13 +228,13 @@ Continuous integration/continuous deployment (CI/CD)
 processes <https://docs.github.com/en/actions>`_. The following GitHub Action workflows
 are enabled:
 
-+-----------------------------+------------------+------------------------------------------------------------------------------------------------------------------------+
-| Name                        | Event trigger    | Description                                                                                                            |
-+=============================+==================+========================================================================================================================+
-| ``nox``                     | ``pull_request`` | Runs nox sessions across multiple Python versions (3.9+), and on Ubuntu and macOS for every ``git push``.              |
-+-----------------------------+------------------+------------------------------------------------------------------------------------------------------------------------+
-| ``sphinx-build-and-deploy`` | ``release``      | Builds, and deploys Sphinx documentation to GitHub Pages when a release is published on GitHub. Excludes pre-releases. |
-+-----------------------------+------------------+------------------------------------------------------------------------------------------------------------------------+
++-----------------------------+------------------+-------------------------------------------------------------------------------------------------------------------------+
+| Name                        | Event trigger    | Description                                                                                                             |
++=============================+==================+=========================================================================================================================+
+| ``nox``                     | ``pull_request`` | Runs nox sessions across multiple Python versions (3.10+), and on Ubuntu and macOS for every ``git push``.              |
++-----------------------------+------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``sphinx-build-and-deploy`` | ``release``      | Builds, and deploys Sphinx documentation to GitHub Pages when a release is published on GitHub. Excludes pre-releases.  |
++-----------------------------+------------------+-------------------------------------------------------------------------------------------------------------------------+
 
 `Install act to your system to test GitHub Actions locally before pushing to
 GitHub <https://github.com/nektos/act>`_. Note act tests GitHub Actions using Ubuntu

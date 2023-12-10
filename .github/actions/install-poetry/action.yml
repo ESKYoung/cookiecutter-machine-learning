@@ -24,15 +24,21 @@ runs:
       shell: bash
 
     - name: Install Poetry
-      run: curl -sSL https://install.python-poetry.org | python3 - --version 1.5.1
+      run: curl -sSL https://install.python-poetry.org | python3 - --version 1.7.1
       shell: bash
 
     - name: Update PATH to run `poetry`
       run: echo "$HOME/.local/bin" >> $GITHUB_PATH
       shell: bash
 
+    - name: Install Poetry plugins
+      run: poetry self add poetry-plugin-export
+      shell: bash
+
     - name: Configure Poetry
-      run: poetry config virtualenvs.in-project true
+      run: |
+        poetry config virtualenvs.in-project true
+        poetry config warnings.export false
       shell: bash
 
     - name: Set up cache

@@ -19,8 +19,8 @@ include = []
 exclude = []
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.13"
-cookiecutter = "^2.4.0"
+python = ">=3.10,<3.13"
+cookiecutter = "^2.5.0"
 cruft = {extras = ["pyproject"], version = "^2.15.0"}
 
 [tool.poetry.group.ci-cd]
@@ -34,7 +34,7 @@ nox-poetry = "^1.0.3"
 optional = true
 
 [tool.poetry.group.docs.dependencies]
-pydata-sphinx-theme = "^0.14.1"
+pydata-sphinx-theme = "^0.14.4"
 Sphinx = "^7.2.6"
 sphinx-copybutton = "^0.5.2"
 
@@ -42,18 +42,18 @@ sphinx-copybutton = "^0.5.2"
 optional = true
 
 [tool.poetry.group.pre-commit.dependencies]
-black = "^23.9.1"
+black = "^23.11.0"
 detect-secrets = "^1.4.0"
 flake8 = "^6.1.0"
 flake8-bandit = "^4.1.1"
-flake8-bugbear = "^23.9.16"
+flake8-bugbear = "^23.12.2"
 flake8-docstrings = "^1.7.0"
 flake8-rst-docstrings = "^0.3.0"
-isort = "^5.12.0"
-mypy = "^1.5.1"
-pre-commit = "^3.4.0"
-pre-commit-hooks = "^4.4.0"
-safety = "^2.3.5"
+isort = "^5.13.0"
+mypy = "^1.7.1"
+pre-commit = "^3.6.0"
+pre-commit-hooks = "^4.5.0"
+safety = "^2.4.0b2"
 types-python-slugify = "^8.0.0.3"
 
 [tool.poetry.group.testing]
@@ -61,11 +61,11 @@ optional = true
 
 [tool.poetry.group.testing.dependencies]
 coverage = {extras = ["toml"], version = "^7.3.2"}
-pytest = "^7.4.2"
+pytest = "^7.4.3"
 pytest-cookies = "^0.7.0"
 pytest-cov = "^4.1.0"
-pytest-mock = "^3.11.1"
-pytest-xdist = "^3.3.1"
+pytest-mock = "^3.12.0"
+pytest-xdist = "^3.5.0"
 
 [build-system]
 requires = ["poetry-core"]

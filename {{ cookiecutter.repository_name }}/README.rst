@@ -16,7 +16,7 @@ Requirements
 To get started, your system should meet the following requirements:
 
 - Git 2.36+ installed
-- Python 3.9+ installed
+- Python 3.10+ installed
 
 {% if cookiecutter.license == "MIT" %}*******
 Licence
