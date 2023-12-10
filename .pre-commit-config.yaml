@@ -44,6 +44,14 @@ repos:
         pass_filenames: false
         args: ["--bare"]
 
+      # Poetry
+      - id: poetry-check
+        name: Poetry check — validate the `pyproject.toml` file, and that its consistent with the `poetry.lock` file
+        entry: poetry check
+        language: system
+        pass_filenames: false
+        args: ["--quiet"]
+
       # General code formatting
       - id: end-of-file-fixer
         name: Fix blank lines at end of files (auto-fix)
