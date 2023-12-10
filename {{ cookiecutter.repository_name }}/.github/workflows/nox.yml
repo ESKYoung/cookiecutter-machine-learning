@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        python: ["3.10"]
+        python: ["3.10", "3.11"]
         nox_session: ["docs", "pre-commit", "testing"]
         exclude:
           - os: macos-latest
