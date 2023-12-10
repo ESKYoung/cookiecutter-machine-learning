@@ -5,7 +5,8 @@
   ],
   "_extensions": [
     "cookiecutter.extensions.SlugifyExtension",
-    "cookiecutter.extensions.TimeExtension"
+    "cookiecutter.extensions.TimeExtension",
+    "jinja2_git.GitExtension"
   ],
 
   "author": "Name",

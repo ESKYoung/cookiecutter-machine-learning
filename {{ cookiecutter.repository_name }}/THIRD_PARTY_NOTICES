@@ -3,7 +3,7 @@ THIRD PARTY NOTICES
 This repository includes material listed below, or described in the code.
 
 ----------------------------------------------------------------------------------------
-@ESKYoung/cookiecutter-machine-learning 2.x.x
+@ESKYoung/cookiecutter-machine-learning at commit `{% gitcommit short=True %}`
 https://github.com/ESKYoung/cookiecutter-machine-learning
 
     MIT License
