@@ -19,9 +19,11 @@ jobs:
 
       - name: Install dependencies
         run: poetry install --with=docs --sync --no-ansi
+        shell: bash
 
       - name: Build documentation
         run: poetry run sphinx-build -b html docs/ docs/_build
+        shell: bash
 
       - name: Deploy documentation to GitHub Pages
         if: ${{ startsWith(github.ref, 'refs/tags') && !env.ACT }}
