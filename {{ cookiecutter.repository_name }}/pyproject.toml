@@ -31,7 +31,6 @@ optional = true
 
 [tool.poetry.group.ci-cd.dependencies]
 nox = "^2023.4.22"
-nox-poetry = "^1.0.3"
 
 [tool.poetry.group.cookiecutter]
 optional = true
