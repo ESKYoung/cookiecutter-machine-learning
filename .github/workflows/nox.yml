@@ -10,7 +10,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         python: ["3.9", "3.10"]
-        nox_session: ["_example", "docs", "pre-commit", "testing"]
+        nox_session: ["docs", "example", "pre-commit", "testing"]
         exclude:
           - os: macos-latest
             nox_session: "docs"
@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - name: Checkout the revision
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Poetry
         id: install-poetry
@@ -35,21 +35,10 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
-      - name: Install dependencies for `_example` `nox` session
-        if: ${{ matrix.nox_session == '_example' }}
-        run: poetry install --with=ci-cd --sync --no-ansi
-
-      - name: Install dependencies for `docs` `nox` session
-        if: ${{ matrix.nox_session == 'docs' }}
-        run: poetry install --with=ci-cd,docs --sync --no-ansi
-
-      - name: Install dependencies for `pre-commit` `nox` session
-        if: ${{ matrix.nox_session == 'pre-commit' }}
-        run: poetry install --with=ci-cd,pre-commit,testing --sync --no-ansi
-
-      - name: Install dependencies for `testing` `nox` session
-        if: ${{ matrix.nox_session == 'testing' }}
-        run: poetry install --with=ci-cd,testing --sync --no-ansi
+      - name: Install dependencies
+        run: poetry install --with=ci-cd --sync --no-ansi --no-root
+        shell: bash
 
       - name: Run `nox` session `${{ matrix.nox_session }}`
         run: poetry run nox --force-python python --session ${{ matrix.nox_session }}
+        shell: bash
