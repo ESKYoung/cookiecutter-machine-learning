@@ -48,9 +48,6 @@ files][gitlab-create-repo] and follow the instructions to push your first commit
 Note that CI/CD workflows are built with GitHub Actions; GitLab CI/CD is not currently
 supported.
 
-Note, pre-commit hooks may fail on your first commit due to formatting; fix these according to
-the `CONTRIBUTING.md` before proceeding.
-
 ### Requirements
 
 To get started, your system should meet the following requirements:
