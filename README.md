@@ -37,11 +37,19 @@ git add .
 git commit
 ```
 
+> On your first commit, some pre-commit hooks may fail due to formatting issues caused
+> by your answers to the `cruft create` prompts. This is expected, so fix the issues as
+> normal if it occurs (see `CONTRIBUTING.md`).
+
 Finally, [create an empty GitHub repository without any optional
 files][github-create-repo], or [create a blank project on GitLab without any optional
-files][gitlab-create-repo] and follow the instructions to push your first commit. Note
-that CI/CD workflows are built with GitHub Actions; GitLab CI/CD is not currently
+files][gitlab-create-repo] and follow the instructions to push your first commit.
+
+Note that CI/CD workflows are built with GitHub Actions; GitLab CI/CD is not currently
 supported.
+
+Note, pre-commit hooks may fail on your first commit due to formatting; fix these according to
+the `CONTRIBUTING.md` before proceeding.
 
 ### Requirements
 
