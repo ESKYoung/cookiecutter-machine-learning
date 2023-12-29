@@ -15,6 +15,7 @@ release = importlib.metadata.version("{{ cookiecutter.package_name }}")
 
 # Sphinx extensions
 extensions = [
+    "myst_parser",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.autosummary",
@@ -72,4 +73,22 @@ autosummary_generate = True
 linkcheck_ignore = [
     r"^https://{{ cookiecutter.remote_username }}.github.io/{{ cookiecutter.repository_name }}$",  # noqa: B950
     r"^https://{{ cookiecutter.remote_username }}.github.io/{{ cookiecutter.repository_name }}/",  # noqa: B950
+]
+
+# `myst_parser` configurations
+myst_heading_anchors = 6
+myst_enable_extensions = [
+    "amsmath",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "linkify",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
 ]
