@@ -33,6 +33,7 @@ nox = "^2023.4.22"
 optional = true
 
 [tool.poetry.group.docs.dependencies]
+myst-parser = {extras = ["linkify"], version = "^2.0.0"}
 pydata-sphinx-theme = "^0.14.4"
 Sphinx = "^7.2.6"
 sphinx-copybutton = "^0.5.2"
