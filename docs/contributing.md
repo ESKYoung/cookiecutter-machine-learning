@@ -264,11 +264,11 @@ Pre- and post-generation hooks are scripts that cookiecutter will run either bef
 (pre-generation), or after (post-generation) creating a project from the template. If
 one or more pre-generation hooks fail, no project will be created from the template. If
 one or more post-generation hooks fail, the created project will be automatically
-cleaned up. Refer to the cookiecutter documentation for more information about these
+cleaned up. Refer to the `cookiecutter` documentation for more information about these
 hooks.
 
-Note that modifying files outside the template folder, will not change those inside
-the template folder. For example, if you would like to implement a new pre-commit hook
-for this project, as well as for any downstream projects created from the template, you
-must add the new hook to both `.pre-commit-config.yaml`, and
+Note that modifying files outside the template folder will not change any corresponding
+files inside the template folder. For example, if you would like to implement a new
+pre-commit hook for this project, as well as for any downstream projects created from
+the template, you must add the new hook to both `.pre-commit-config.yaml`, and
 `{{ cookiecutter.repository_name }}/.pre-commit-config.yaml`.

@@ -41,7 +41,7 @@ Now, install the Poetry virtual environment, including all optional dependency g
 
 ```zsh
 cd /path/to/repository
-poetry install --with-ci-cd,docs,pre-commit,testing --sync
+poetry install --with=ci-cd,cookiecutter,docs,notebook,pre-commit,testing --sync
 ```
 
 Alternatively, run the following `make` command:
@@ -238,6 +238,6 @@ This project's structure was [built from a `cookiecutter`
 template](https://github.com/ESKYoung/cookiecutter-machine-learning).
 
 You can use the `cruft` Python package to keep this project up-to-date with this
-`cookiecutter` template. First, [install the `cookiecutter` dependency group using
+`cookiecutter` template. First, [install the `cruft` dependency group using
 Poetry](#contributing-requirements), and then [follow the `cruft` guidance on updating
 projects](https://cruft.github.io/cruft/#updating-a-project).
