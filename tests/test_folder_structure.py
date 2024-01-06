@@ -1,9 +1,11 @@
 """Test the folder structure is created correctly with `cookiecutter`."""
 
+import json
 from collections import OrderedDict
 from typing import Any, Dict, Optional, Tuple
 
 import pytest
+from conftest import DIRECTORY_TESTS
 from pytest_cookies.plugin import Cookies, Result
 from slugify import slugify
 
@@ -14,6 +16,12 @@ from slugify import slugify
 )
 class TestFolderStructure:
     """Test the folder structure is created correctly by `cookiecutter`."""
+
+    @pytest.fixture
+    def cookiecutter_json(self) -> Any:
+        """Load the `cookiecutter.json` file."""
+        with open(DIRECTORY_TESTS.parent.joinpath("cookiecutter.json"), "r") as f:
+            return json.loads(f.read())
 
     @pytest.fixture
     def _create_project(
