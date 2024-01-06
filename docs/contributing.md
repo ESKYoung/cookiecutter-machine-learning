@@ -183,8 +183,8 @@ make docs
 ### Writing documentation
 
 Documentation should be written in clear, and plain English. Although contentious, we
-try to wrap lines at 88 characters; this can allow for easier review of raw
-reStructuredText, although arguably Git diffs can become more complicated.
+try to wrap lines at 88 characters; this can allow for easier review of raw Markdown,
+although arguably Git diffs can become more complicated.
 
 Try to avoid linking to the same place more than once. [For content writing guidance,
 refer to GOV.UK's Content Design
