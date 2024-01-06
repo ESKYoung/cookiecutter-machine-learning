@@ -25,7 +25,8 @@ To contribute to this project, please make sure your system meets the following
 requirements:
 
 - Git 2.36+ installed
-- Python 3.10+ installed
+- [Python 3.10, and 3.11 installed for testing purposes](#testing); consider using
+  [`pyenv` to manage multiple Python versions](https://github.com/pyenv/pyenv)
 - [Poetry 1.7 installed](https://python-poetry.org)
 - a local clone of this project
   ```zsh
@@ -40,7 +41,7 @@ Now, install the Poetry virtual environment, including all optional dependency g
 
 ```zsh
 cd /path/to/repository
-poetry install --with-ci-cd,docs,pre-commit,testing --sync
+poetry install --with=ci-cd,cookiecutter,docs,notebook,pre-commit,testing --sync
 ```
 
 Alternatively, run the following `make` command:
@@ -180,8 +181,8 @@ make docs
 ### Writing documentation
 
 Documentation should be written in clear, and plain English. Although contentious, we
-try to wrap lines at 88 characters; this can allow for easier review of raw
-reStructuredText, although arguably Git diffs can become more complicated.
+try to wrap lines at 88 characters; this can allow for easier review of raw Markdown,
+although arguably Git diffs can become more complicated.
 
 Try to avoid linking to the same place more than once. [For content writing guidance,
 refer to GOV.UK's Content Design
@@ -237,6 +238,6 @@ This project's structure was [built from a `cookiecutter`
 template](https://github.com/ESKYoung/cookiecutter-machine-learning).
 
 You can use the `cruft` Python package to keep this project up-to-date with this
-`cookiecutter` template. First, [install the `cookiecutter` dependency group using
+`cookiecutter` template. First, [install the `cruft` dependency group using
 Poetry](#contributing-requirements), and then [follow the `cruft` guidance on updating
 projects](https://cruft.github.io/cruft/#updating-a-project).

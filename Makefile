@@ -14,14 +14,14 @@ contributor_requirements:
 
 # Build the `Sphinx` documentation, and open it
 docs: contributor_requirements
-	rm -rf docs/_build docs/reference/api
-	sphinx-build -b=html docs docs/_build
-	open docs/_build/index.html
+	@rm -rf docs/_build docs/reference/api
+	@sphinx-build -b=html docs docs/_build
+	@open docs/_build/index.html
 
 # Run `pytest` suite, create a coverage report, and open it
 coverage: contributor_requirements
-	pytest --cov --cov-report=html || true
-	open htmlcov/index.html
+	@pytest --cov --cov-report=html || true
+	@open htmlcov/index.html
 
 # Build an example project using default settings, and open the folder
 example: contributor_requirements

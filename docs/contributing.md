@@ -25,7 +25,8 @@ To contribute to this project, please make sure your system meets the following
 requirements:
 
 - Git 2.36+ installed
-- Python 3.10+ installed
+- [Python 3.10, and 3.11 installed for testing purposes](#testing); consider using
+  [`pyenv` to manage multiple Python versions](https://github.com/pyenv/pyenv)
 - [Poetry 1.7 installed](https://python-poetry.org)
 - a local clone of this project
   ```zsh
@@ -113,7 +114,7 @@ your terminal, and running the following commands:
 
 ```zsh
 cd /path/to/repository
-pytest --cov --cov-report-html
+pytest --cov --cov-report=html
 open htmlcov/index.html
 ```
 
@@ -182,8 +183,8 @@ make docs
 ### Writing documentation
 
 Documentation should be written in clear, and plain English. Although contentious, we
-try to wrap lines at 88 characters; this can allow for easier review of raw
-reStructuredText, although arguably Git diffs can become more complicated.
+try to wrap lines at 88 characters; this can allow for easier review of raw Markdown,
+although arguably Git diffs can become more complicated.
 
 Try to avoid linking to the same place more than once. [For content writing guidance,
 refer to GOV.UK's Content Design
@@ -215,6 +216,7 @@ GitHub](https://github.com/nektos/act). Note `act` tests GitHub Actions using Ub
 runners, so any macOS runs will be skipped. By default, calling:
 
 ```zsh
+cd /path/to/repository
 act
 ```
 
@@ -222,6 +224,7 @@ runs GitHub Actions with the `push` event trigger. Other event triggers can be i
 with additional arguments, for example:
 
 ```zsh
+cd /path/to/repository
 act release
 ```
 
@@ -230,6 +233,7 @@ will run GitHub Actions with the `release` event trigger.
 For this project, a helper `make` command to run all GitHub Actions locally is provided:
 
 ```zsh
+cd /path/to/repository
 make cicd
 ```
 
@@ -263,11 +267,11 @@ Pre- and post-generation hooks are scripts that cookiecutter will run either bef
 (pre-generation), or after (post-generation) creating a project from the template. If
 one or more pre-generation hooks fail, no project will be created from the template. If
 one or more post-generation hooks fail, the created project will be automatically
-cleaned up. Refer to the cookiecutter documentation for more information about these
+cleaned up. Refer to the `cookiecutter` documentation for more information about these
 hooks.
 
-Note that modifying files outside the template folder, will not change those inside
-the template folder. For example, if you would like to implement a new pre-commit hook
-for this project, as well as for any downstream projects created from the template, you
-must add the new hook to both `.pre-commit-config.yaml`, and
+Note that modifying files outside the template folder will not change any corresponding
+files inside the template folder. For example, if you would like to implement a new
+pre-commit hook for this project, as well as for any downstream projects created from
+the template, you must add the new hook to both `.pre-commit-config.yaml`, and
 `{{ cookiecutter.repository_name }}/.pre-commit-config.yaml`.
