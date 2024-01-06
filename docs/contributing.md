@@ -114,7 +114,7 @@ your terminal, and running the following commands:
 
 ```zsh
 cd /path/to/repository
-pytest --cov --cov-report-html
+pytest --cov --cov-report=html
 open htmlcov/index.html
 ```
 
@@ -216,6 +216,7 @@ GitHub](https://github.com/nektos/act). Note `act` tests GitHub Actions using Ub
 runners, so any macOS runs will be skipped. By default, calling:
 
 ```zsh
+cd /path/to/repository
 act
 ```
 
@@ -223,6 +224,7 @@ runs GitHub Actions with the `push` event trigger. Other event triggers can be i
 with additional arguments, for example:
 
 ```zsh
+cd /path/to/repository
 act release
 ```
 
@@ -231,6 +233,7 @@ will run GitHub Actions with the `release` event trigger.
 For this project, a helper `make` command to run all GitHub Actions locally is provided:
 
 ```zsh
+cd /path/to/repository
 make cicd
 ```
 
