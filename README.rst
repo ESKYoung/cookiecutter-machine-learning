@@ -21,10 +21,15 @@ For SSH connections, run the following command instead:::
     cd /path/to/parent/of/project
     cruft create git@github.com:ESKYoung/cookiecutter-machine-learning.git
 
-Once the project has been created, navigate to it, and initialise Git.::
+
+Once the project has been created, it will try to run some automated formatting checks,
+and initialise Git; these help to smooth the creation process, but don't worry if one
+or more of the formatting checks or Git initialisation fail.
+
+Now navigate to the project, and initialise Git (if it failed).::
 
     cd /path/to/project
-    git init
+    git init  # only if this step failed during project creation
 
 Next, set up your project by following the requirements set out in its contributing
 guidelines (``docs/contributing.rst``). Now, stage all the files in Git, and make the
