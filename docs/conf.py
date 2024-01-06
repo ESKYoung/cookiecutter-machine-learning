@@ -9,12 +9,13 @@ import importlib.metadata
 
 # Project information
 project = "cookiecutter-machine-learning"
-copyright = "2022, Eric Young"
+copyright = "2023, Eric Young"
 author = "Eric Young"
 release = importlib.metadata.version("cookiecutter-machine-learning")
 
 # Sphinx extensions
 extensions = [
+    "myst_parser",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.autosummary",
@@ -72,4 +73,22 @@ autosummary_generate = True
 linkcheck_ignore = [
     r"^https://ESKYoung.github.io/cookiecutter-machine-learning$",
     r"^https://ESKYoung.github.io/cookiecutter-machine-learning/",
+]
+
+# `myst_parser` configurations
+myst_heading_anchors = 6
+myst_enable_extensions = [
+    "amsmath",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "linkify",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
 ]
