@@ -57,9 +57,10 @@ def install_poetry_venv(
     # Install the requirements
     nox_session.install("--quiet", "--requirement", requirements_path)
 
-    # If requested, install the root package.
+    # If requested, install the root package in editable mode; this ensures `nox`,
+    # and `coverage` can work together; see https://stackoverflow.com/a/67890129
     if root:
-        nox_session.install("--quiet", ".")
+        nox_session.install("--quiet", "--editable", ".")
 
 
 @nox.session(
