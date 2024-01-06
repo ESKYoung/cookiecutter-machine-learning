@@ -25,7 +25,8 @@ To contribute to this project, please make sure your system meets the following
 requirements:
 
 - Git 2.36+ installed
-- Python 3.10+ installed
+- [Python 3.10, and 3.11 installed for testing purposes](#testing); consider using
+  [`pyenv` to manage multiple Python versions](https://github.com/pyenv/pyenv)
 - [Poetry 1.7 installed](https://python-poetry.org)
 - a local clone of this project
   ```zsh
