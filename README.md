@@ -29,7 +29,7 @@ Now navigate to the project, and initialise Git (if it failed).
 
 ```zsh
 cd /path/to/project
-git init  # only if this step failed during project creation
+git init  # only run this command if Git initialisation failed during project creation
 ```
 
 Next, set up your project according to its contributing requirements (refer to
@@ -40,8 +40,8 @@ project's first commit.
 :::{note}
 On your first commit, some pre-commit hooks may fail due to formatting issues
 caused by your answers to the `cruft create` prompts. This is expected, so fix
-pre-commit issues as normal if it
-occurs (refer to `docs/contributing.md#pre-commit-hooks` in your outputted project).
+pre-commit issues as normal if they
+occur (refer to `docs/contributing.md#pre-commit-hooks` in your outputted project).
 :::
 
 ```zsh
