@@ -79,13 +79,15 @@ source = ["hooks", "src"]
 
 [tool.coverage.report]
 exclude_lines = ["if __name__ == .__main__.:"]
+fail_under = 90
+include = ["hooks/*", "src/*"]
 show_missing = true
-
-[tool.isort]
-profile = "black"
 
 [tool.coverage.run]
 omit = ["{{ cookiecutter.repository_name }}/*", "tests/*"]
+
+[tool.isort]
+profile = "black"
 
 [tool.mypy]
 strict = true

@@ -92,6 +92,7 @@ source = ["src"]
 
 [tool.coverage.report]
 exclude_lines = ["if __name__ == .__main__.:"]
+include = ["src/*"]
 show_missing = true
 
 [tool.coverage.run]
