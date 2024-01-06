@@ -12,7 +12,12 @@ from slugify import slugify
 
 @pytest.mark.parametrize(
     "extra_context",
-    [None, {"license": "MIT"}, {"license": "GNU GPL"}, {"license": "None"}],
+    [
+        None,
+        {"license": "MIT", "python_version": "3.10"},
+        {"license": "GNU GPL", "python_version": "3.11"},
+        {"license": "None"},
+    ],
 )
 class TestFolderStructure:
     """Test the folder structure is created correctly by `cookiecutter`."""

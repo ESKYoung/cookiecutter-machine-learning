@@ -19,6 +19,8 @@
   "release": "0.1.0",
   "description": "Description",
 
+  "python_version": ["3.10", "3.11"],
+
   "__prompts__": {
     "author": "Enter your name",
     "email": "Enter your email address",
@@ -33,6 +35,7 @@
       "None": "Proprietary software"
     },
     "release": "Enter the release version of this project",
-    "description": "Add a description of this project"
+    "description": "Add a description of this project",
+    "python_version": "Select a project-specific Python version for `pyenv` users"
   }
 }
