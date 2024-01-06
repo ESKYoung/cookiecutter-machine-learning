@@ -24,7 +24,7 @@
   "__prompts__": {
     "author": "Enter your name",
     "email": "Enter your email address",
-    "remote_username": "Enter your GitHub/GitLab username",
+    "remote_username": "Enter your GitHub username",
     "project_name": "Enter the name of your project",
     "repository_name": "Enter the name of your Git repository",
     "package_name": "Enter the name of the Python package",

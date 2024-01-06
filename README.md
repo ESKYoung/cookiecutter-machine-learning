@@ -51,12 +51,13 @@ git commit
 
 Finally, [create an empty GitHub repository without any optional
 files](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository),
-or [create a blank project on GitLab without any optional
-files](https://docs.gitlab.com/ee/user/project/working_with_projects.html), and follow
-the instructions to push your first commit.
+and follow the instructions to push your first commit.
 
-Note that CI/CD workflows are built with GitHub Actions; GitLab CI/CD is not currently
-supported.
+:::{note}
+You can push your generated repository to GitLab. However, not all functionality is
+supported, as some are written using GitHub-specific features such as GitHub Actions,
+and GitHub Pages.
+:::
 
 ### Requirements
 
