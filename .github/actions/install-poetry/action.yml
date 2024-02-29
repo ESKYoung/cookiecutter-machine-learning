@@ -2,6 +2,8 @@ name: "Install `poetry`"
 description: "Installs Poetry to a runner."
 
 inputs:
+  poetry-version:
+    description: "Poetry version to use."
   python-version:
     description: "Version range or exact version of Python or PyPy to use."
 
@@ -23,8 +25,18 @@ runs:
       run: echo "version=$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")" >> $GITHUB_OUTPUT
       shell: bash
 
-    - name: Install Poetry
-      run: curl -sSL https://install.python-poetry.org | python3 - --version 1.7.1
+    - name: Cache Poetry installation
+      uses: actions/cache@v4
+      id: cache-poetry-install
+      with:
+        path: |
+          ~/.local/bin/poetry
+          ~/.local/share/pypoetry
+        key: cache-main-poetry-install-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ inputs.poetry-version }}
+
+    - name: Install Poetry ${{ inputs.poetry-version }}
+      if: ${{ steps.cache-poetry-install.outputs.cache-hit != 'true' }}
+      run: curl -sSL https://install.python-poetry.org | python3 - --version ${{ inputs.poetry-version }}
       shell: bash
 
     - name: Update PATH to run `poetry`
@@ -32,6 +44,7 @@ runs:
       shell: bash
 
     - name: Install Poetry plugins
+      if: ${{ steps.cache-poetry-install.outputs.cache-hit != 'true' }}
       run: poetry self add poetry-plugin-export
       shell: bash
 
@@ -40,10 +53,3 @@ runs:
         poetry config virtualenvs.in-project true
         poetry config warnings.export false
       shell: bash
-
-    - name: Set up cache
-      uses: actions/cache@v3
-      id: cache
-      with:
-        path: .venv
-        key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
