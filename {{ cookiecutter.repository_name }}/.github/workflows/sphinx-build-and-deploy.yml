@@ -5,8 +5,8 @@ on:
     types: [released]
 
 env:
-  POETRY_VERSION: 1.7.1
-  PYTHON_VERSION: 3.10
+  POETRY_VERSION: "1.7.1"
+  PYTHON_VERSION: "3.10"
 
 jobs:
   sphinx-build-and-deploy:
