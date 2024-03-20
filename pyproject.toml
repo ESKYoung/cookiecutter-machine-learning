@@ -42,7 +42,7 @@ sphinx-copybutton = "^0.5.2"
 optional = true
 
 [tool.poetry.group.pre-commit.dependencies]
-black = "^23.9.1"
+black = "^24.3.0"
 detect-secrets = "^1.4.0"
 flake8 = "^6.1.0"
 flake8-bandit = "^4.1.1"
