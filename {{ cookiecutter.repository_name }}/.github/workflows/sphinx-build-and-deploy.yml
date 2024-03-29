@@ -5,7 +5,6 @@ on:
     types: [released]
 
 env:
-  POETRY_VERSION: "1.7.1"
   PYTHON_VERSION: "3.10"
 
 jobs:
@@ -20,7 +19,6 @@ jobs:
         id: install-poetry
         uses: ./.github/actions/install-poetry
         with:
-          poetry-version: ${{ env.POETRY_VERSION }}
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Cache Poetry virtual environment
@@ -28,10 +26,11 @@ jobs:
         id: cache
         with:
           path: .venv
-          key: cache-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-${{ env.POETRY_VERSION }}-${{ hashFiles('poetry.lock') }}
-          restore-keys: cache-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-${{ env.POETRY_VERSION }}-
+          key: cache-${{ github.repository }}-${{ github.job }}-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: cache-${{ github.repository }}-${{ github.job }}-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-
 
       - name: Install dependencies
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         run: poetry install --with=docs --sync --no-ansi
         shell: bash
 

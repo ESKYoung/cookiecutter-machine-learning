@@ -3,7 +3,9 @@ description: "Installs Poetry to a runner."
 
 inputs:
   poetry-version:
-    description: "Poetry version to use."
+    description: "Poetry version to use. Default to use Poetry 1.8.2."
+    required: false
+    default: "1.8.2"
   python-version:
     description: "Version range or exact version of Python or PyPy to use."
 
@@ -32,7 +34,7 @@ runs:
         path: |
           ~/.local/bin/poetry
           ~/.local/share/pypoetry
-        key: cache-main-poetry-install-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ inputs.poetry-version }}
+        key: cache-${{ github.repository }}-main-${{ github.job }}-poetry-install-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ inputs.poetry-version }}
 
     - name: Install Poetry ${{ inputs.poetry-version }}
       if: ${{ steps.cache-poetry-install.outputs.cache-hit != 'true' }}
@@ -43,13 +45,6 @@ runs:
       run: echo "$HOME/.local/bin" >> $GITHUB_PATH
       shell: bash
 
-    - name: Install Poetry plugins
-      if: ${{ steps.cache-poetry-install.outputs.cache-hit != 'true' }}
-      run: poetry self add poetry-plugin-export
-      shell: bash
-
     - name: Configure Poetry
-      run: |
-        poetry config virtualenvs.in-project true
-        poetry config warnings.export false
+      run: poetry config virtualenvs.in-project true
       shell: bash
