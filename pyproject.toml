@@ -22,23 +22,14 @@ exclude = []
 python = ">=3.10,<3.13"
 cruft = {extras = ["pyproject"], version = "^2.15.0"}
 
-[tool.poetry.group.ci-cd]
-optional = true
-
 [tool.poetry.group.ci-cd.dependencies]
 nox = "^2023.4.22"
-
-[tool.poetry.group.docs]
-optional = true
 
 [tool.poetry.group.docs.dependencies]
 myst-parser = {extras = ["linkify"], version = "^2.0.0"}
 pydata-sphinx-theme = "^0.15.1"
 Sphinx = "^7.2.6"
 sphinx-copybutton = "^0.5.2"
-
-[tool.poetry.group.pre-commit]
-optional = true
 
 [tool.poetry.group.pre-commit.dependencies]
 black = "^24.3.0"
@@ -54,9 +45,6 @@ pre-commit = "^3.6.0"
 pre-commit-hooks = "^4.5.0"
 safety = "^2.3.5"
 types-python-slugify = "^8.0.0.3"
-
-[tool.poetry.group.testing]
-optional = true
 
 [tool.poetry.group.testing.dependencies]
 coverage = {extras = ["toml"], version = "^7.4.0"}
