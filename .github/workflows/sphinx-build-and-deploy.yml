@@ -34,7 +34,7 @@ jobs:
 
       - name: Install dependencies
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        run: poetry install --with=docs --sync --no-ansi
+        run: poetry install --only=main,docs --sync --no-ansi
 
       - name: Build documentation
         run: poetry run sphinx-build -b html docs/ docs/_build

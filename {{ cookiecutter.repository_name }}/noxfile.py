@@ -49,7 +49,7 @@ def install_poetry_venv(
         "--format=requirements.txt",
         f"--output={requirements_path}",
         "--without-hashes",
-        f"--{'with' if root else 'only'}={','.join(['ci-cd', *dependency_groups])}",
+        f"--only={'main,' if root else ''}{','.join(['ci-cd', *dependency_groups])}",
         "--quiet",
         external=True,
     )
