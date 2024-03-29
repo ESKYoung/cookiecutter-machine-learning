@@ -27,14 +27,14 @@ coverage: contributor_requirements
 # Build an example project using default settings, and open the folder
 example: contributor_requirements
 	@TEMPORARY_DIRECTORY="$$(mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir')" && \
-	cookiecutter . --no-input --output-dir $$TEMPORARY_DIRECTORY && \
+	cruft create . --no-input --output-dir $$TEMPORARY_DIRECTORY && \
 	echo "Example project stored at:" $$TEMPORARY_DIRECTORY && \
 	open $$TEMPORARY_DIRECTORY
 
 # Build an example project using user-defined settings, and open the folder
 example_with_input: contributor_requirements
 	@TEMPORARY_DIRECTORY="$$(mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir')" && \
-	cookiecutter . --output-dir $$TEMPORARY_DIRECTORY && \
+	cruft create . --output-dir $$TEMPORARY_DIRECTORY && \
 	echo "Example project stored at " $$TEMPORARY_DIRECTORY && \
 	open $$TEMPORARY_DIRECTORY
 
