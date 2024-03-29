@@ -156,6 +156,13 @@ session name is identical to any required Poetry dependency group so that GitHub
 Actions can easily install the correct dependencies, and run `nox` sessions in
 parallel. See the configuration script at `.github/workflows.yml` for further details.
 
+To run pre-commits, and all tests with coverage, `nox` sessions, and CI/CD processes
+locally, run the following Make command in your terminal:
+
+```zsh
+make all-tests
+```
+
 ## Documentation
 
 Documentation in this project is written in Markdown. This is parsed using the

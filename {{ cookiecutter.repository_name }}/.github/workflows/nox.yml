@@ -4,13 +4,10 @@ on: [pull_request]
 
 jobs:
   nox:
-    name: ${{ matrix.os }} / ${{ matrix.python }} / ${{ matrix.nox_session }}
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
         python: ["3.10", "3.11"]
-        poetry: ["1.7.1"]
         nox_session: ["docs", "pre-commit", "testing"]
         exclude:
           - os: macos-latest
@@ -22,6 +19,8 @@ jobs:
           - python: "3.10"
             nox_session: "pre-commit"
       fail-fast: true
+    name: ${{ matrix.os }} / ${{ matrix.python }} / ${{ matrix.nox_session }}
+    runs-on: ${{ matrix.os }}
     defaults:
       run:
         shell: bash
@@ -34,7 +33,6 @@ jobs:
         id: install-poetry
         uses: ./.github/actions/install-poetry
         with:
-          poetry-version: ${{ matrix.poetry }}
           python-version: ${{ matrix.python }}
 
       - name: Cache Poetry virtual environment
@@ -42,13 +40,12 @@ jobs:
         id: cache
         with:
           path: .venv
-          key: cache-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-${{ matrix.poetry }}-${{ hashFiles('poetry.lock') }}
-          restore-keys: cache-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-${{ matrix.poetry }}-
+          key: cache-${{ github.repository }}-${{ github.job }}-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: cache-${{ github.repository }}-${{ github.job }}-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-
 
       - name: Install dependencies
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         run: poetry install --with=ci-cd --sync --no-ansi --no-root
-        shell: bash
 
       - name: Run `nox` session `${{ matrix.nox_session }}`
         run: poetry run nox --force-python python --session ${{ matrix.nox_session }}
-        shell: bash

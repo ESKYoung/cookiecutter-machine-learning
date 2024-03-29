@@ -1,4 +1,5 @@
 .PHONY:
+	all-local-tests
 	cicd
 	cicd_pull_request
 	cicd_release
@@ -26,25 +27,35 @@ coverage: contributor_requirements
 # Build an example project using default settings, and open the folder
 example: contributor_requirements
 	@TEMPORARY_DIRECTORY="$$(mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir')" && \
-	cookiecutter . --no-input --output-dir $$TEMPORARY_DIRECTORY && \
+	cruft create . --no-input --output-dir $$TEMPORARY_DIRECTORY && \
 	echo "Example project stored at:" $$TEMPORARY_DIRECTORY && \
 	open $$TEMPORARY_DIRECTORY
 
 # Build an example project using user-defined settings, and open the folder
 example_with_input: contributor_requirements
 	@TEMPORARY_DIRECTORY="$$(mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir')" && \
-	cookiecutter . --output-dir $$TEMPORARY_DIRECTORY && \
+	cruft create . --output-dir $$TEMPORARY_DIRECTORY && \
 	echo "Example project stored at " $$TEMPORARY_DIRECTORY && \
 	open $$TEMPORARY_DIRECTORY
 
 # Run GitHub Actions with `pull_request` trigger locally — requires `act` installed
 cicd_pull_request: contributor_requirements
-	act pull_request
+	@act pull_request
 
 # Run GitHub Actions with `release` trigger locally — requires `act` installed
 cicd_release: contributor_requirements
-	act release
+	@act release
 
 # Run GitHub Actions
 cicd: cicd_pull_request cicd_release
 	@echo "GitHub Actions ran locally"
+
+# Run pre-commit hooks, all tests with coverage, including `nox` checks, and CI/CD
+# checks
+all-local-tests: contributor_requirements
+	pre-commit run --all-files
+	$(MAKE) --old-file=contributor_requirements coverage
+	nox
+	$(MAKE) --old-file=contributor_requirements cicd_pull_request
+	$(MAKE) --old-file=contributor_requirements cicd_release
+	@echo "All checks pass"
