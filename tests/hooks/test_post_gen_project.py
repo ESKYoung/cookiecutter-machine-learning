@@ -2,11 +2,10 @@
 
 from logging import LogRecord
 from typing import Sequence, Union
-from unittest.mock import ANY, MagicMock, call
+from unittest.mock import ANY, MagicMock, call, patch
 
 import pytest
 from _pytest.logging import LogCaptureFixture
-from pytest_mock import MockerFixture
 
 from hooks.post_gen_project import (
     _run_command_if_exists,
@@ -43,19 +42,15 @@ def _check_log_messages(
         assert log_record.message == expected_message
 
 
+@patch("hooks.post_gen_project.subprocess")
 @pytest.mark.parametrize("test_input_args", [["foo", "bar"], ["foo", "bar", "foobar"]])
 class TestHiddenRunCommandIfExists:
     """Test the ``_run_command_if_exist`` function."""
 
-    @pytest.fixture
-    def patch_subprocess(self, mocker: MockerFixture) -> MagicMock:
-        """Patch the ``subprocess`` package."""
-        return mocker.patch("hooks.post_gen_project.subprocess")
-
     def test_subprocess_run_called_once_correctly(
         self,
-        caplog: LogCaptureFixture,
         patch_subprocess: MagicMock,
+        caplog: LogCaptureFixture,
         test_input_args: Sequence[str],
     ) -> None:
         """Test the ``subprocess.run`` function is called once correctly."""
@@ -71,8 +66,8 @@ class TestHiddenRunCommandIfExists:
 
     def test_exceptions_handled_correctly(
         self,
-        caplog: LogCaptureFixture,
         patch_subprocess: MagicMock,
+        caplog: LogCaptureFixture,
         test_input_args: Sequence[str],
     ) -> None:
         """Test any exception is handled correctly."""
@@ -88,6 +83,7 @@ class TestHiddenRunCommandIfExists:
         )
 
 
+@patch("hooks.post_gen_project._run_command_if_exists")
 @pytest.mark.parametrize(
     "test_input_command_args",
     [
@@ -97,11 +93,6 @@ class TestHiddenRunCommandIfExists:
 )
 class TestRunCommandsIfExist:
     """Test the ``run_commands_if_exist`` function."""
-
-    @pytest.fixture
-    def patch__run_command_if_exists(self, mocker: MockerFixture) -> MagicMock:
-        """Patch the ``_run_command_if_exists`` function."""
-        return mocker.patch("hooks.post_gen_project._run_command_if_exists")
 
     def test__run_command_if_exists_called_correctly(
         self,
@@ -116,18 +107,14 @@ class TestRunCommandsIfExist:
         )
 
 
+@patch("hooks.post_gen_project.Repo")
 class TestGitInit:
     """Test that Git is initialised in downstream projects."""
 
-    @pytest.fixture
-    def patch_repo(self, mocker: MockerFixture) -> MagicMock:
-        """Patch the ``Repo`` class."""
-        return mocker.patch("hooks.post_gen_project.Repo")
-
     def test_repo_init_called_once_correctly(
         self,
-        caplog: LogCaptureFixture,
         patch_repo: MagicMock,
+        caplog: LogCaptureFixture,
     ) -> None:
         """Test the ``Repo.init`` method is called once correctly."""
         git_init()
@@ -142,8 +129,8 @@ class TestGitInit:
 
     def test_exceptions_handled_correctly(
         self,
-        caplog: LogCaptureFixture,
         patch_repo: MagicMock,
+        caplog: LogCaptureFixture,
     ) -> None:
         """Test any exception is handled correctly."""
         patch_repo.init.side_effect = Exception()
@@ -158,6 +145,8 @@ class TestGitInit:
         )
 
 
+@patch("hooks.post_gen_project.run_commands_if_exist")
+@patch("hooks.post_gen_project.git_init")
 @pytest.mark.parametrize(
     "test_input_command_args",
     [
@@ -168,20 +157,10 @@ class TestGitInit:
 class TestMain:
     """Test the ``main`` function."""
 
-    @pytest.fixture
-    def patch_run_commands_if_exist(self, mocker: MockerFixture) -> MagicMock:
-        """Patch the ``run_commands_if_exist`` function."""
-        return mocker.patch("hooks.post_gen_project.run_commands_if_exist")
-
-    @pytest.fixture
-    def patch_git_init(self, mocker: MockerFixture) -> MagicMock:
-        """Patch the ``git_init`` function."""
-        return mocker.patch("hooks.post_gen_project.git_init")
-
     def test_run_commmands_if_exist_called_once_correctly(
         self,
+        _: MagicMock,
         patch_run_commands_if_exist: MagicMock,
-        patch_git_init: MagicMock,
         test_input_command_args: Sequence[Sequence[str]],
     ) -> None:
         """Test the ``run_commands_if_exist`` function is called once correctly."""
@@ -192,8 +171,8 @@ class TestMain:
 
     def test_git_init_called_once_correctly(
         self,
-        patch_run_commands_if_exist: MagicMock,
         patch_git_init: MagicMock,
+        _: MagicMock,
         test_input_command_args: Sequence[Sequence[str]],
     ) -> None:
         """Test the ``git_init`` function is called once correctly."""
@@ -202,8 +181,8 @@ class TestMain:
 
     def test_sequence_of_function_calls_is_correct(
         self,
-        patch_run_commands_if_exist: MagicMock,
         patch_git_init: MagicMock,
+        patch_run_commands_if_exist: MagicMock,
         test_input_command_args: Sequence[Sequence[str]],
     ) -> None:
         """Test the sequence of function calls is correct."""
