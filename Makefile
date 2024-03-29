@@ -1,4 +1,5 @@
 .PHONY:
+	all-local-tests
 	cicd
 	cicd_pull_request
 	cicd_release
@@ -39,12 +40,22 @@ example_with_input: contributor_requirements
 
 # Run GitHub Actions with `pull_request` trigger locally — requires `act` installed
 cicd_pull_request: contributor_requirements
-	act pull_request
+	@act pull_request
 
 # Run GitHub Actions with `release` trigger locally — requires `act` installed
 cicd_release: contributor_requirements
-	act release
+	@act release
 
 # Run GitHub Actions
 cicd: cicd_pull_request cicd_release
 	@echo "GitHub Actions ran locally"
+
+# Run pre-commit hooks, all tests with coverage, including `nox` checks, and CI/CD
+# checks
+all-local-tests: contributor_requirements
+	pre-commit run --all-files
+	$(MAKE) --old-file=contributor_requirements coverage
+	nox
+	$(MAKE) --old-file=contributor_requirements cicd_pull_request
+	$(MAKE) --old-file=contributor_requirements cicd_release
+	@echo "All checks pass"
