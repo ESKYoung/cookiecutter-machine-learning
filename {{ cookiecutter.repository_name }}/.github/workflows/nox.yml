@@ -45,7 +45,7 @@ jobs:
 
       - name: Install dependencies
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        run: poetry install --with=ci-cd --sync --no-ansi --no-root
+        run: poetry install --only=main,ci-cd --sync --no-ansi --no-root
 
       - name: Run `nox` session `${{ matrix.nox_session }}`
         run: poetry run nox --force-python python --session ${{ matrix.nox_session }}
