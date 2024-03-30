@@ -25,6 +25,7 @@ exclude = []
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
+pydantic-settings = "^2.2.1"
 
 [tool.poetry.group.ci-cd.dependencies]
 nox = "^2023.4.22"
