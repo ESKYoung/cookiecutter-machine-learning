@@ -20,5 +20,7 @@ This page gives an overview of all public objects, functions, and methods in the
     CustomLogFormatter
     customise_logger
     get_custom_logger
+    logger
+    settings
 
 ```
