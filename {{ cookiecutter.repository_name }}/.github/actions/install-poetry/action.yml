@@ -38,7 +38,7 @@ runs:
 
     - name: Install Poetry ${{ inputs.poetry-version }}
       if: ${{ steps.cache-poetry-install.outputs.cache-hit != 'true' }}
-      run: curl -sSL https://install.python-poetry.org | python3 - --version ${{ inputs.poetry-version }}
+      run: curl -sSL https://install.python-poetry.org | POETRY_HOME=~/.local python3 - --version ${{ inputs.poetry-version }}
       shell: bash
 
     - name: Update PATH to run `poetry`
