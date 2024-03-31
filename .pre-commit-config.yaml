@@ -23,12 +23,14 @@ repos:
         language: system
         types: [python]
         require_serial: true
+        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/(src/\\{\\{ cookiecutter\\.package_name \\}\\}/config/__init__.py$|tests/\\{\\{ cookiecutter\\.package_name \\}\\}/config/test_logger.py)"
       - id: isort
         name: isort — sort Python imports (auto-fix)
         entry: poetry run isort
         language: system
         types: [python]
         require_serial: true
+        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/(src/\\{\\{ cookiecutter\\.package_name \\}\\}/config/__init__.py$|tests/\\{\\{ cookiecutter\\.package_name \\}\\}/config/test_logger.py)"
       - id: mypy
         name: mypy — static Python typing
         entry: poetry run mypy
@@ -36,7 +38,7 @@ repos:
         types: [python]
         args: ["--ignore-missing-imports", "--scripts-are-modules"]
         require_serial: true
-        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/(docs/conf.py$|src/|tests/conftest.py$|noxfile.py$)"
+        exclude: "^\\{\\{ cookiecutter\\.repository_name \\}\\}/(docs/conf.py$|src/|tests/conftest.py$|noxfile.py$|tests/{{ cookiecutter.package_name }}/config/test_logger.py$)"
       - id: safety
         name: safety — check for security vulnerabilities in Python packages
         entry: poetry run safety check
