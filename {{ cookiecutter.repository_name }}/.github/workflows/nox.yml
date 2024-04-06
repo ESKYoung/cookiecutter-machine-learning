@@ -36,15 +36,15 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: Cache Poetry virtual environment
+        id: cache-poetry-venv
         uses: actions/cache@v4
-        id: cache
         with:
           path: .venv
           key: cache-${{ github.repository }}-${{ github.job }}-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-${{ hashFiles('poetry.lock') }}
           restore-keys: cache-${{ github.repository }}-${{ github.job }}-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-
 
       - name: Install dependencies
-        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.cache-poetry-venv.outputs.cache-hit != 'true' }}
         run: poetry install --only=main,ci-cd --sync --no-ansi --no-root
 
       - name: Run `nox` session `${{ matrix.nox_session }}`
