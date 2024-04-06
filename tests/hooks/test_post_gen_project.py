@@ -1,7 +1,7 @@
 """Tests for `post_gen_project` module."""
 
 from logging import LogRecord
-from typing import Sequence, Union
+from typing import Optional, Sequence, Union
 from unittest.mock import ANY, MagicMock, call, patch
 
 import pytest
@@ -9,6 +9,7 @@ from _pytest.logging import LogCaptureFixture
 
 from hooks.post_gen_project import (
     _run_command_if_exists,
+    disable_cruft_autoupdater_github_action,
     git_init,
     main,
     run_commands_if_exist,
@@ -107,6 +108,37 @@ class TestRunCommandsIfExist:
         )
 
 
+@patch("hooks.post_gen_project.Path")
+@pytest.mark.parametrize(
+    "test_input_template_link",
+    [None, "foo", "https:/www.github.com/foo/bar", "http://www.github.com"],
+)
+class TestDisableCruftAutoupdaterGithubAction:
+    """Test that the ``cruft`` autoupdater GitHub Action is disabled in some cases."""
+
+    def test_path_called_correctly(
+        self,
+        patch_path: MagicMock,
+        test_input_template_link: Optional[str],
+    ) -> None:
+        """Test the ``Path`` class is not called for HTTPS links."""
+        disable_cruft_autoupdater_github_action(template_link=test_input_template_link)
+
+        if test_input_template_link is None or not test_input_template_link.startswith(
+            "https://www.github.com/"
+        ):
+            patch_path.assert_called_once_with(
+                ".github", "workflows", "cruft-autoupdate.yml"
+            )
+            returned_path = patch_path.return_value
+            returned_path.with_suffix.assert_called_once_with(".yml.disabled")
+            returned_path.rename.assert_called_once_with(
+                returned_path.with_suffix.return_value
+            )
+        else:
+            patch_path.assert_not_called()
+
+
 @patch("hooks.post_gen_project.Repo")
 class TestGitInit:
     """Test that Git is initialised in downstream projects."""
@@ -146,6 +178,7 @@ class TestGitInit:
 
 
 @patch("hooks.post_gen_project.run_commands_if_exist")
+@patch("hooks.post_gen_project.disable_cruft_autoupdater_github_action")
 @patch("hooks.post_gen_project.git_init")
 @pytest.mark.parametrize(
     "test_input_command_args",
@@ -160,6 +193,7 @@ class TestMain:
     def test_run_commmands_if_exist_called_once_correctly(
         self,
         _: MagicMock,
+        __: MagicMock,
         patch_run_commands_if_exist: MagicMock,
         test_input_command_args: Sequence[Sequence[str]],
     ) -> None:
@@ -169,10 +203,24 @@ class TestMain:
             command_args=test_input_command_args
         )
 
+    def test_disable_cruft_autoupdater_github_action_called_once_correctly(
+        self,
+        _: MagicMock,
+        patch_disable_cruft_autoupdater_github_action: MagicMock,
+        __: MagicMock,
+        test_input_command_args: Sequence[Sequence[str]],
+    ) -> None:
+        """Test ``disable_cruft_autoupdater_github_action`` called once correctly."""
+        main(command_args=test_input_command_args)
+        patch_disable_cruft_autoupdater_github_action.assert_called_once_with(
+            template_link="{{ cookiecutter._template }}",
+        )
+
     def test_git_init_called_once_correctly(
         self,
         patch_git_init: MagicMock,
         _: MagicMock,
+        __: MagicMock,
         test_input_command_args: Sequence[Sequence[str]],
     ) -> None:
         """Test the ``git_init`` function is called once correctly."""
@@ -182,6 +230,7 @@ class TestMain:
     def test_sequence_of_function_calls_is_correct(
         self,
         patch_git_init: MagicMock,
+        patch_disable_cruft_autoupdater_github_action: MagicMock,
         patch_run_commands_if_exist: MagicMock,
         test_input_command_args: Sequence[Sequence[str]],
     ) -> None:
@@ -189,12 +238,17 @@ class TestMain:
         # Set up a test manager to check the order of function calls
         test_manager = MagicMock()
         test_manager.attach_mock(patch_run_commands_if_exist, "run_commands_if_exist")
+        test_manager.attach_mock(
+            patch_disable_cruft_autoupdater_github_action,
+            "disable_cruft_autoupdater_github_action",
+        )
         test_manager.attach_mock(patch_git_init, "git_init")
 
         main(command_args=test_input_command_args)
 
         test_expected_calls = [
             call.run_commands_if_exist(command_args=ANY),
+            call.disable_cruft_autoupdater_github_action(template_link=ANY),
             call.git_init(),
         ]
         assert test_manager.mock_calls == test_expected_calls

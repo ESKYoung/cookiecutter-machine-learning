@@ -2,7 +2,8 @@
 
 import logging
 import subprocess  # noqa: S404
-from typing import Sequence
+from pathlib import Path
+from typing import Optional, Sequence
 
 from git import Repo
 
@@ -40,6 +41,13 @@ def run_commands_if_exist(command_args: Sequence[Sequence[str]]) -> None:
         _run_command_if_exists(args)
 
 
+def disable_cruft_autoupdater_github_action(template_link: Optional[str]) -> None:
+    """Disable the `cruft` autoupdater GitHub Action if not using public HTTPS links."""
+    if template_link is None or not template_link.startswith("https://www.github.com/"):
+        github_action_path = Path(".github", "workflows", "cruft-autoupdate.yml")
+        github_action_path.rename(github_action_path.with_suffix(".yml.disabled"))
+
+
 def git_init() -> None:
     """Initialise a Git repository."""
     try:
@@ -56,6 +64,9 @@ def main(command_args: Sequence[Sequence[str]]) -> None:
     """Wrapper function to run all post-generation hooks."""
     # Run all commands, and initialise Git
     run_commands_if_exist(command_args=command_args)
+    disable_cruft_autoupdater_github_action(
+        template_link="{{ cookiecutter._template }}"
+    )
     git_init()
 
 

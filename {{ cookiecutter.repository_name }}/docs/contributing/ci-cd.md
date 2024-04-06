@@ -4,10 +4,11 @@
 processes](https://docs.github.com/en/actions). The following GitHub Action workflows
 are enabled:
 
-| Name                      | Event trigger  | Description                                                                                                            |
-| ------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `nox`                     | `pull_request` | Runs `nox` sessions across multiple Python versions (3.10+), and on Ubuntu and macOS for every `git push`.             |
-| `sphinx-build-and-deploy` | `release`      | Builds, and deploys Sphinx documentation to GitHub Pages when a release is published on GitHub. Excludes pre-releases. |
+| Name                      | Event trigger  | Description                                                                                                                                                                                                             |
+| ------------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cruft-autoupdate`        | `schedule`     | Runs `cruft update` to pull changes from the latest release of `ESKYoung/cookiecutter-machine-learning` on the 1st of every month at 02:00 UTC. Only enabled if the public template has been linked via HTTPS, not SSH. |
+| `nox`                     | `pull_request` | Runs `nox` sessions across multiple Python versions (3.10+), and on Ubuntu and macOS for every `git push`.                                                                                                              |
+| `sphinx-build-and-deploy` | `release`      | Builds, and deploys Sphinx documentation to GitHub Pages when a release is published on GitHub. Excludes pre-releases.                                                                                                  |
 
 [Install `act` to your system to test GitHub Actions locally before pushing to
 GitHub](https://github.com/nektos/act). Note `act` tests GitHub Actions using Ubuntu
