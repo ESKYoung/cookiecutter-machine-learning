@@ -10,6 +10,9 @@ env:
 jobs:
   sphinx-build-and-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
 
     steps:
       - name: Checkout the revision
@@ -22,24 +25,22 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Cache Poetry virtual environment
+        id: cache-poetry-venv
         uses: actions/cache@v4
-        id: cache
         with:
           path: .venv
           key: cache-${{ github.repository }}-${{ github.job }}-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-${{ hashFiles('poetry.lock') }}
           restore-keys: cache-${{ github.repository }}-${{ github.job }}-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-
 
       - name: Install dependencies
-        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.cache-poetry-venv.outputs.cache-hit != 'true' }}
         run: poetry install --only=main,docs --sync --no-ansi
-        shell: bash
 
       - name: Build documentation
         run: poetry run sphinx-build -b html docs/ docs/_build
-        shell: bash
 
       - name: Deploy documentation to GitHub Pages
-        if: ${{ startsWith(github.ref, 'refs/tags') && !env.ACT }}
+        if: ${{ !env.ACT && startsWith(github.ref, 'refs/tags') }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages

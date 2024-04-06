@@ -14,6 +14,16 @@ cd /path/to/parent/of/project
 cruft create https://github.com/ESKYoung/cookiecutter-machine-learning.git
 ```
 
+:::{warning}
+There is an autoupdate GitHub Action to sync any created projects with the latest
+release of this template. This GitHub Action does not currently support SSH
+connections, as this requires deploy keys, or an extra GitHub Action steps with
+Personal Access Tokens configured.
+
+If you are using SSH, this GitHub Action will be disabled, and you will have to
+manually sync any future changes, but the rest of your project will work as normal.
+:::
+
 For SSH connections, run the following command instead:
 
 ```zsh
