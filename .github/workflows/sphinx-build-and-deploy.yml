@@ -22,6 +22,7 @@ jobs:
         id: install-poetry
         uses: ./{{ cookiecutter.repository_name }}/.github/actions/install-poetry
         with:
+          job-name: "main-${{ github.job }}"
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Cache Poetry virtual environment

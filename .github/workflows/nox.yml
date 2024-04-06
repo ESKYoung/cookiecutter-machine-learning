@@ -33,6 +33,7 @@ jobs:
         id: install-poetry
         uses: ./{{ cookiecutter.repository_name }}/.github/actions/install-poetry
         with:
+          job-name: "main-${{ github.job }}-${{ matrix.nox_session }}"
           python-version: ${{ matrix.python }}
 
       - name: Cache Poetry virtual environment
@@ -40,8 +41,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .venv
-          key: cache-${{ github.repository }}-main-${{ github.job }}-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-${{ hashFiles('poetry.lock') }}
-          restore-keys: cache-${{ github.repository }}-main-${{ github.job }}-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-
+          key: cache-${{ github.repository }}-main-${{ github.job }}-${{ matrix.nox_session }}-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: cache-${{ github.repository }}-main-${{ github.job }}-${{ matrix.nox_session }}-poetry-venv-${{ runner.os }}-${{ steps.install-poetry.outputs.full-python-version }}-
 
       - name: Install dependencies
         if: ${{ steps.cache-poetry-venv.outputs.cache-hit != 'true' }}

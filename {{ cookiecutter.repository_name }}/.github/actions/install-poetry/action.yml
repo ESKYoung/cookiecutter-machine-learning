@@ -2,6 +2,10 @@ name: "Install `poetry`"
 description: "Installs Poetry to a runner."
 
 inputs:
+  job-name:
+    description: "Job name; useful for matrix workflows where multiple sessions may cause cache conflicts. Defaults to `GITHUB_JOB`."
+    required: false
+    default: ${{ github.job }}
   poetry-version:
     description: "Poetry version to use. Default to use Poetry 1.8.2."
     required: false
@@ -34,7 +38,7 @@ runs:
         path: |
           ~/.local/bin/poetry
           ~/.local/share/pypoetry
-        key: cache-${{ github.repository }}-${{ github.job }}-poetry-install-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ inputs.poetry-version }}
+        key: cache-${{ github.repository }}-${{ inputs.job-name }}-poetry-install-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ inputs.poetry-version }}
 
     - name: Install Poetry ${{ inputs.poetry-version }}
       if: ${{ steps.cache-poetry-install.outputs.cache-hit != 'true' }}
