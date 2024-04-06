@@ -10,7 +10,9 @@ This page gives an overview of all public objects, functions, and methods in the
 .. autosummary::
     :toctree: api/
 
+    disable_cruft_autoupdater_github_action
     git_init
+    main
     run_commands_if_exist
 
 ```

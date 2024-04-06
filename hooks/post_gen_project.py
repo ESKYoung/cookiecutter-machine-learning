@@ -42,7 +42,7 @@ def run_commands_if_exist(command_args: Sequence[Sequence[str]]) -> None:
 
 
 def disable_cruft_autoupdater_github_action(template_link: Optional[str]) -> None:
-    """Disable the `cruft` autoupdater GitHub Action if not using public HTTPS links."""
+    """Disable the ``cruft`` autoupdater GitHub Action if not using public HTTPS links."""
     if template_link is None or not template_link.startswith("https://www.github.com/"):
         github_action_path = Path(".github", "workflows", "cruft-autoupdate.yml")
         github_action_path.rename(github_action_path.with_suffix(".yml.disabled"))
