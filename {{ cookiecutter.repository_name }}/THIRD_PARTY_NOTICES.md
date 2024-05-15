@@ -8,7 +8,7 @@ This repository includes material listed below, or described in the code.
 
     MIT License
 
-    Copyright (c) 2023 Eric Young
+    Copyright (c) 2024 Eric Young
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
