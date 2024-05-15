@@ -23,36 +23,36 @@ python = ">=3.10,<3.13"
 cruft = {extras = ["pyproject"], version = "^2.15.0"}
 
 [tool.poetry.group.ci-cd.dependencies]
-nox = "^2023.4.22"
+nox = "^2024.4.15"
 
 [tool.poetry.group.docs.dependencies]
-myst-parser = {extras = ["linkify"], version = "^2.0.0"}
-pydata-sphinx-theme = "^0.15.1"
-Sphinx = "^7.2.6"
+myst-parser = {extras = ["linkify"], version = "^3.0.1"}
+pydata-sphinx-theme = "^0.15.2"
+Sphinx = "^7.3.7"
 sphinx-copybutton = "^0.5.2"
 
 [tool.poetry.group.pre-commit.dependencies]
-black = "^24.3.0"
-detect-secrets = "^1.4.0"
+black = "^24.4.2"
+detect-secrets = "^1.5.0"
 flake8 = "^7.0.0"
 flake8-bandit = "^4.1.1"
-flake8-bugbear = "^23.12.2"
+flake8-bugbear = "^24.4.6"
 flake8-docstrings = "^1.7.0"
 flake8-rst-docstrings = "^0.3.0"
 isort = "^5.13.2"
-mypy = "^1.8.0"
-pre-commit = "^3.6.0"
-pre-commit-hooks = "^4.5.0"
+mypy = "^1.10.0"
+pre-commit = "^3.7.1"
+pre-commit-hooks = "^4.6.0"
 safety = "^2.3.4"
-types-python-slugify = "^8.0.0.3"
+types-python-slugify = "^8.0.2.20240310"
 
 [tool.poetry.group.testing.dependencies]
-coverage = {extras = ["toml"], version = "^7.4.0"}
-pytest = "^7.4.4"
+coverage = {extras = ["toml"], version = "^7.5.1"}
+pytest = "^8.2.0"
 pytest-cookies = "^0.7.0"
-pytest-cov = "^4.1.0"
-pytest-mock = "^3.12.0"
-pytest-xdist = "^3.5.0"
+pytest-cov = "^5.0.0"
+pytest-mock = "^3.14.0"
+pytest-xdist = "^3.6.1"
 
 [build-system]
 requires = ["poetry-core"]
