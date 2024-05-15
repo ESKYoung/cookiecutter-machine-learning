@@ -1,4 +1,5 @@
 """Tests for the ``{{ cookiecutter.package_name }}.config.custom_logger`` module."""
+
 from logging import CRITICAL, DEBUG, ERROR, INFO, WARNING
 from typing import Optional
 from unittest.mock import MagicMock, patch
