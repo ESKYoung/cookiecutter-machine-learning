@@ -71,7 +71,7 @@ nbqa = "^1.7.0"
 nbstripout = "^0.6.1"
 pre-commit = "^3.4.0"
 pre-commit-hooks = "^4.4.0"
-safety = "^2.3.5"
+safety = "^2.3.4"
 
 [tool.poetry.group.testing]
 optional = true
