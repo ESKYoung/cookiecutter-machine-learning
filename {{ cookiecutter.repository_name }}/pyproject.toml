@@ -90,6 +90,11 @@ show_column_numbers = true
 show_error_codes = true
 show_error_context = true
 
+[tool.nbqa.addopts]
+flake8 = [
+    "--extend-ignore=E402"
+]
+
 [tool.pytest.ini_options]
 addopts = ["-vv", "--doctest-modules"]
 doctest_optionflags = "NORMALIZE_WHITESPACE"
