@@ -51,13 +51,12 @@ if [ $# -eq 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ] ; then
     return
 fi
 
-# Restore the exploratory Python environment from an existing `requirements.txt` file
-# constrained by the Poetry environment.
+# Restore the exploratory Python environment from an existing `requirements.txt` file.
 #
 # To add or update packages in the exploratory environment, delete any existing
 # `requirements.txt` file first, and re-run this script
 if [ -f requirements.txt ]; then
-  if (pip install -q --constraint constraints.txt -r requirements.txt); then
+  if (pip install -q -r requirements.txt); then
     echo "Exploratory environment restored; to add or update packages, delete the" \
       "\`requirements.txt\` file first, and re-run this script."
     return
@@ -94,13 +93,12 @@ if ! (make -s --directory ../../ contributor-requirements 1>/dev/null); then
   return 1
 fi;
 
-# Create a temporary file for the `pip` constraints file, and create a file descriptor
-# to write entries
-constraints=$(mktemp /tmp/constraints.txt)
-exec 3>"$constraints"
+# Create a temporary folder for the `pip` constraints file
+constraints_directory=$(mktemp -d)
+constraints="$constraints_directory"/constraints.txt
 
 # Freeze the Poetry environment as a `pip` constraints file
-if ! (pip freeze --quiet --exclude-editable >&3); then
+if ! (pip freeze --quiet --exclude-editable > "$constraints"); then
   echo "Could not freeze Poetry environment as constraints!"
   return 1
 fi;
@@ -111,6 +109,7 @@ if (pip install --quiet --constraint "$constraints" "$@"); then
   echo "Exploratory environment set for this notebook."
 else
   echo "Could not restore, or set the exploratory environment for this notebook!"
+  rm -rf "$constraints_directory"
   return 1
 fi;
 
@@ -119,8 +118,8 @@ if (pip freeze --quiet > requirements.txt); then
   echo "Exploratory environment exported to \`requirements.txt\`."
 else
   echo "Could not export newly-created exploratory environment!"
+  rm -rf "$constraints_directory"
   return 1
 fi;
 
-# Close the file descriptor, which will also delete the temporary constraints file
-exec 3>&-
+rm -rf "$constraints_directory"
