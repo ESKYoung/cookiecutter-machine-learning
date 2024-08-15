@@ -51,13 +51,12 @@ if [ $# -eq 0 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ] ; then
     return
 fi
 
-# Restore the exploratory Python environment from an existing `requirements.txt` file
-# constrained by the Poetry environment.
+# Restore the exploratory Python environment from an existing `requirements.txt` file.
 #
 # To add or update packages in the exploratory environment, delete any existing
 # `requirements.txt` file first, and re-run this script
 if [ -f requirements.txt ]; then
-  if (pip install -q --constraint constraints.txt -r requirements.txt); then
+  if (pip install -q -r requirements.txt); then
     echo "Exploratory environment restored; to add or update packages, delete the" \
       "\`requirements.txt\` file first, and re-run this script."
     return
