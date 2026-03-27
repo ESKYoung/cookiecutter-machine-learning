@@ -24,7 +24,7 @@ include = []
 exclude = []
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.13"
+python = ">=3.10,<3.13"
 
 [tool.poetry.group.ci-cd]
 optional = true
@@ -58,7 +58,7 @@ jupyterlab = "^4.0.6"
 optional = true
 
 [tool.poetry.group.pre-commit.dependencies]
-black = "^24.3.0"
+black = "^26.3.1"
 detect-secrets = "^1.4.0"
 flake8 = "^6.1.0"
 flake8-bandit = "^4.1.1"
