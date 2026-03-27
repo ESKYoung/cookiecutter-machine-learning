@@ -83,7 +83,6 @@ The following hooks are enabled for this project:
 | [`flake8-rst-docstrings`][flake8-rst-docstrings] | `flake8` plugin to validate docstrings in ReStructuredText.                                                                                                                                                                                        |
 | [`isort`][isort]                                 | Sort Python imports in a specified, and consistent order.                                                                                                                                                                                          |
 | [`mypy`][mypy]                                   | Static type checker to ensure functions/classes have type hints, and they are used correctly.                                                                                                                                                      |
-| [`safety`][safety]                               | Checks Python dependencies for known vulnerabilities. For more information about any flagged vulnerabilities, run `poetry run safety check` in your terminal.                                                                                      |
 | [`nbstripout`][nbstripout]                       | Strips outputs and metadata from notebooks (Jupyter, Google Colab, Databricks) for security and to reduce data leakage.                                                                                                                            |
 | [`nbqa`][nbqa]                                   | Run formatters, linters, and other tools on notebooks. Currently set for `black`, `flake8`, `isort`, and `mypy`.                                                                                                                                   |
 | `end-of-file-fixer`                              | Ensure files end with a blank line.                                                                                                                                                                                                                |
@@ -271,5 +270,4 @@ updating projects][cruft-update].
 [pre-commit]: https://pre-commit.com
 [prettier]: https://prettier.io
 [pytest]: https://docs.pytest.org/en/7.1.x
-[safety]: https://pyup.io/safety
 [sphinx]: https://www.sphinx-doc.org
