@@ -8,7 +8,7 @@ from tempfile import TemporaryDirectory
 import nox
 
 # Define the Python versions under test
-PYTHON_VERSIONS = ["3.9", "3.10"]
+PYTHON_VERSIONS = ["3.10"]
 
 # Set minimum required version of `nox`
 nox.needs_version = ">=2023.4.22"
