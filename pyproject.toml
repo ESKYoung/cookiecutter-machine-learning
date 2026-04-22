@@ -60,7 +60,7 @@ optional = true
 
 [tool.poetry.group.testing.dependencies]
 coverage = {extras = ["toml"], version = "^7.3.2"}
-pytest = "^7.4.2"
+pytest = "^9.0.3"
 pytest-cookies = "^0.7.0"
 pytest-cov = "^4.1.0"
 pytest-mock = "^3.11.1"
